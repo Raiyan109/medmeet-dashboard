@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/images/logo1.png";
+import logo from "../../assets/images/logo-nobackground.png";
 import logout from "../../assets/images/logout.png";
 import { createElement, useEffect, useState } from "react";
 import { routeLinkGenerators } from "../../utils/routeLinkGenerators";
@@ -36,13 +36,13 @@ const Sidebar = () => {
     // console.log(location.pathname.includes("earnings"));
   }, [location.pathname]);
   return (
-    <div className="fixed top-0 left-0 w-[290px] min-h-screen h-full pr-0 bg-white">
-      <div className="h-full flex flex-col justify-between  pt-[50px] border drop-shadow">
-        <div className="space-y[24px">
+    <div className="fixed top-[32px] left-[32px] w-[326px] min-h-screen h-full pr-0 bg-black rounded-[24px] font-roboto">
+      <div className="h-full flex flex-col justify-between  pt-[20px] drop-shadow">
+        <div className="space-y-[24px]">
           <div className="px-[38px]">
-            <img className="w-[60%] mx-auto" src={logo} alt="" />
+            <img className="w-[155px] h-[126] object-contain mx-auto" src={logo} alt="" />
           </div>
-          <ul className="mt-10 max-h-[650px] overflow-y-auto space-y-1 xl:space-y-2 px-4">
+          <ul className="mt-10 max-h-[650px] overflow-y-auto space-y-1 xl:space-y-[16px] px-[24px]">
             {routeLinkGenerators(dashboardItems).map(
               ({ name, icon, path, children, rootPath }, indx) =>
                 children?.length ? null
@@ -121,10 +121,10 @@ const Sidebar = () => {
                         to={path}
                         className={({ isActive }) =>
                           isActive
-                            ? "bg-black text-white" +
-                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
-                            : " hover:text-white  hover:bg-black" +
-                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-md transition-all rounded-full"
+                            ? "bg-gray text-black" +
+                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-[18px] transition-all rounded-[8px]"
+                            : " hover:text-black  hover:bg-gray" +
+                            " w-full px-4 py-3 flex items-center justify-start gap-3 text-[18px] transition-all rounded-[8px] bg-[#545454] text-gray"
                         }
                       >
                         <div>{createElement(icon, { size: "18" })}</div>
