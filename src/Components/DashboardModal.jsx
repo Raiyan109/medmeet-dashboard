@@ -27,7 +27,7 @@ const DashboardModal = ({
       closeIcon={false}
       style={{
         maxWidth: maxWidth || "444px",
-        backgroundColor: backgroundColor ,
+        backgroundColor: backgroundColor,
       }}
     >
       <div>

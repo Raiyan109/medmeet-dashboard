@@ -96,7 +96,6 @@ export const mainTheme = {
     },
     Modal: {
       // contentBg: "#5271FF",
-
     },
   },
 };

@@ -40,6 +40,12 @@
   border-radius: 50%;
 }
 
+/* Modal bg */
+.ant-modal-content {
+  background-color: #E8EBF0 !important;
+  padding: 0 0 0 0 !important;
+}
+
 /* phone Input  */
 .PhoneInputInput {
   outline: none;
