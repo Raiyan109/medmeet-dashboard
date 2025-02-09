@@ -5,6 +5,7 @@ import DashboardModal from "../../../Components/DashboardModal";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import exlamIcon from "../../../assets/images/exclamation-circle.png";
+import { MdOutlineFileDownload } from "react-icons/md";
 
 const Earnings = () => {
 
@@ -18,25 +19,30 @@ const Earnings = () => {
 
   const columns = [
     {
-      title: "#SL",
+      title: "#Tr.ID",
       dataIndex: "transIs",
       key: "transIs",
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "User Name",
+      dataIndex: "username",
+      key: "username",
     },
     {
-      title: "Email",
-      dataIndex: "Email",
-      key: "Email",
+      title: "Doctor Name",
+      dataIndex: "doctorname",
+      key: "doctorname",
     },
     {
-      title: "Phone Number",
-      key: "Phone",
-      dataIndex: "Phone",
+      title: "Amount",
+      key: "amount",
+      dataIndex: "amount",
+    },
+    {
+      title: "Date",
+      key: "date",
+      dataIndex: "date",
     },
     {
       title: "Action",
@@ -59,17 +65,26 @@ const Earnings = () => {
   for (let index = 0; index < 20; index++) {
     data.push({
       transIs: `${index + 1}`,
-      name: "Henry",
-      Email: "sharif@gmail.com",
-      Phone: "+12746478994",
+      username: "Henry",
+      doctorname: "John Doe",
+      amount: "$250",
       Review: "See Review",
       date: "16 Apr 2024",
       _id: index,
     });
   }
   return (
-    <div className="rounded-lg border py-4 border-black mt-8 recent-users-table">
-      <h3 className="text-2xl text-black mb-4 pl-2">Earnings</h3>
+    <div className="rounded-lg bg-[#DDE3E6] mt-8 recent-users-table py-[20px]">
+      <div className="flex justify-between px-2">
+        <h3 className="text-[20px] font-poppins text-[#333333] mb-4 pl-[20px]">Recent Transactions</h3>
+        <div className="flex items-center gap-4 mb-6">
+          <DatePicker placeholder="Date" className="w-[164px] h-[36px] rounded-[86px] border-none outline-none" />
+          <Input placeholder="User Name" className="w-[187px] h-[36px] rounded-[86px] border-none outline-none" />
+          <Input placeholder="Doctor Name" className="w-[187px] h-[36px] rounded-[86px] border-none outline-none" />
+
+          <button style={{ border: 'none', backgroundColor: '#545454', color: 'white', borderRadius: '50%', padding: '7px' }}><IoSearch size={20} /></button>
+        </div>
+      </div>
       {/* Ant Design Table */}
       <Table
         columns={columns}
@@ -82,51 +97,57 @@ const Earnings = () => {
       <DashboardModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        maxWidth="500px"
-        backgroundColor="bg-[#EDEAF3]"
+        maxWidth="400px"
+      // backgroundColor={'#E8EBF0'}
       >
-        <div className="">
-          <h2 className="text-lg text-center mb-4">Transaction Details</h2>
-          <div className="flex justify-between mb-6 text-gray-600">
-            <p>Transaction ID :</p>
+        <div className="py-[24px] font-roboto">
+          <h2 className="text-[18px] text-center mb-4 font-roboto">Transaction Details</h2>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600 px-[16px] py-[20px]">
+            <p className="text-[14px] ">Transaction ID: </p>
             <p>{modalData.transIs}</p>
           </div>
-          <div className="flex justify-between mb-6 text-gray-600">
-            <p>Date :</p>
-            <p>{modalData.name}</p>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Date</p>
+            <p>{modalData.date}</p>
           </div>
-          <div className="flex justify-between mb-6 text-gray-600">
-            <p>User Name :</p>
-            <p>{modalData.Email}</p>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>User name:</p>
+            <p>{modalData.username}</p>
           </div>
-          <div className="flex justify-between mb-6 text-gray-600">
-            <p>Mobile Phone :</p>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>A/C number:</p>
             <p>{modalData.Phone}</p>
           </div>
-          <div className="flex justify-between mb-6 text-gray-600">
-            <p>A/C number :</p>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>A/C holder name</p>
             <p>{modalData.transIs}</p>
           </div>
-          <div className="flex justify-between mb-6 text-gray-600">
-            <p>A/C holder name :</p>
-            <p>{modalData.transIs}</p>
-          </div>
-          <div className="flex justify-between mb-6 text-gray-600">
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
             <p>Transaction amount</p>
             <p>{modalData.transIs}</p>
           </div>
-          <div className="flex justify-between mb-6 text-gray-600">
-            <p>Service</p>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Doctor name</p>
             <p>{modalData.transIs}</p>
           </div>
 
-          <div className="p-4 mt-auto text-center mx-auto flex items-center justify-center">
-                    <button                     
-                      className="w-fit bg-black text-white px-10 py-2 flex items-center justify-center gap-3 text-lg outline-none rounded-2xl"
-                    >
-                      <span className="text-white font-light">Download</span>
-                    </button>
-                  </div>
+          {/* Buttons */}
+          <div className="flex items-center justify-center gap-[12px] mx-2">
+            <div className="border border-[#545454] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px]">
+              <MdOutlineFileDownload size={20} />
+              <h2 className="font-roboto text-[18px] text-[#333333]">Download</h2>
+            </div>
+            <div className="bg-[#90A4AE] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px] font-roboto text-white text-[18px]">
+              Print
+            </div>
+          </div>
         </div>
       </DashboardModal>
     </div>
