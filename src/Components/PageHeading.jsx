@@ -16,7 +16,7 @@ const PageHeading = ({ title, backPath, disbaledBackBtn, className }) => {
           <GoArrowLeft size={30} />
         </button>
       )}
-      {!!title && <h1 className="text-[24px] font-roboto text-[#333333] font-medium">{title}</h1>}
+      {!!title && <h1 className="text-[24px] font-roboto text-[#333333] font-medium text-center">{title}</h1>}
     </div>
   );
 };

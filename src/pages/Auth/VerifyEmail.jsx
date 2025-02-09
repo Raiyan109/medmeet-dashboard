@@ -6,6 +6,7 @@ import image from "../../assets/images/verify.png";
 import PageHeading from "../../Components/PageHeading";
 import OTPInput from "react-otp-input";
 import Swal from "sweetalert2";
+import logo from '../../assets/images/logo1.png'
 // import { useVerifyEmailMutation } from "../../redux/features/Auth/authApi";
 
 const VerifyEmail = () => {
@@ -50,19 +51,20 @@ const VerifyEmail = () => {
     // }
   };
   return (
-    <div className="min-h-[92vh] w-full grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-1 lg:gap-8">
-      <div className="lg:border-r-2 border-primary mx-auto w-[90%] lg:p-[8%]">
-        <img src={image} alt="" />
-      </div>
+    <div className="bg-[#E8EBF0] w-[448px] rounded-[16px]">
+
       <div className="lg:p-[5%] order-first lg:order-last">
         <div className="w-full py-[64px] lg:px-[44px] space-y-5">
-          <div className="flex flex-col items-center lg:items-start">
+          <div className="flex items-center justify-center pt-[34px]">
+            <img src={logo} alt="" className="w-[182px] h-[150px] object-contain" />
+          </div>
+          <div className="flex flex-col items-center">
             <PageHeading
               backPath={"/auth/forgot-password"}
               title={"Verify Email"}
-              disbaledBackBtn={true}
+              disbaledBackBtn={false}
             />
-            <p className=" drop-shadow text-hash mt-5 text-center lg:text-left">
+            <p className="text-center font-roboto text-[14px] leading-[16.41px] text-[#5C5C5C] pt-[24px] max-w-sm lg:max-w-lg">
               Please check your email. We have sent a code to contact @gmail.com
             </p>
           </div>
@@ -80,14 +82,14 @@ const VerifyEmail = () => {
                 onChange={setOtp}
                 numInputs={4}
                 inputStyle={{
-                  height: "70px",
-                  width: "70px",
-                  margin: "20px",
-                  // background: "#ECE8F1",
-                  border: "1px solid #61D0FF",
+                  height: "44px",
+                  width: "76px",
+                  marginRight: "18.67px",
+                  background: "transparent",
+                  border: "1px solid #DDDEE0",
                   // marginRight: "auto",
                   outline: "none",
-                  borderRadius: "16px",
+                  borderRadius: "57px",
                   color: "black",
                 }}
                 renderSeparator={<span> </span>}
@@ -95,15 +97,16 @@ const VerifyEmail = () => {
               />
             </div>
             <div className="w-full flex justify-center pt-5">
-                <Button
-                  // disabled={isLoading}
-                  type="primary"
-                  size="large"
-                  htmlType="submit"
-                  className="w-full px-2 "
-                >
-                  Verify Email
-                </Button>
+              <Button
+                // disabled={isLoading}
+                type="primary"
+                size="large"
+                htmlType="submit"
+                className="px-2 w-full bg-[#90A4AE] font-roboto text-[18px]"
+                style={{ width: '345px', height: '48px', borderRadius: '50px' }}
+              >
+                Verify Code
+              </Button>
             </div>
           </Form>
         </div>
