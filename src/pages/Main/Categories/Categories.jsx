@@ -3,10 +3,17 @@ import dentist from '../../../assets/images/cat-dentist.png'
 import eye from '../../../assets/images/cat-eye.png'
 import cardiology from '../../../assets/images/cat-cardiology.png'
 import kidney from '../../../assets/images/cat-kidney.png'
+import { FaPlus } from 'react-icons/fa6'
 
 const Categories = () => {
     return (
         <div>
+            <div className='flex justify-end mb-[16px]'>
+                <button className='w-[200px] h-[56px] bg-[#90A4AE] rounded-[8px] flex items-center justify-center gap-[8px] mr-20'>
+                    <FaPlus size={15} className='text-white' />
+                    <h1 className='text-white font-roboto text-[20px]'>Add Category</h1>
+                </button>
+            </div>
             <div className='grid grid-cols-6 gap-[23px]'>
                 {Array(12).fill(0).map((ar, i) => (
                     <div key={i} className='w-[152px] h-[166px] rounded-[8px] bg-[#DDE3E6] flex flex-col items-center justify-center'>
