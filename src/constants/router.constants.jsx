@@ -46,6 +46,7 @@ import { BiSupport } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbCoin } from "react-icons/tb";
 import Doctor from "../pages/Main/Doctor/Doctor";
+import Appointments from "../pages/Main/Appointments/Appointments";
 
 export const dashboardItems = [
   {
@@ -111,7 +112,7 @@ export const dashboardItems = [
     name: "Appointments",
     path: "appointments",
     icon: HiOutlineCalendar,
-    element: <DriverRequest />,
+    element: <Appointments />,
   },
   {
     name: "Categories",
