@@ -48,6 +48,7 @@ import { TbCoin } from "react-icons/tb";
 import Doctor from "../pages/Main/Doctor/Doctor";
 import Appointments from "../pages/Main/Appointments/Appointments";
 import Categories from "../pages/Main/Categories/Categories";
+import WithdrawRequest from "../pages/Main/WithdrawRequest/WithdrawRequest";
 
 export const dashboardItems = [
   {
@@ -125,7 +126,7 @@ export const dashboardItems = [
     name: "Withdrawal Request",
     path: "withdrawal-request",
     icon: TbCoin,
-    element: <Support />,
+    element: <WithdrawRequest />,
   },
   {
     name: "Setting",
