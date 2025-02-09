@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import exlamIcon from "../assets/images/exclamation-circle.png";
 import { useState } from "react";
 import DashboardModal from "./DashboardModal";
+import { MdOutlineFileDownload } from "react-icons/md";
 
 const DashboardHomeTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -85,7 +86,7 @@ const DashboardHomeTable = () => {
       <DashboardModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        maxWidth="500px"
+        maxWidth="400px"
       // backgroundColor={'#E8EBF0'}
       >
         <div className="py-[24px] font-roboto">
@@ -126,6 +127,16 @@ const DashboardHomeTable = () => {
             <p>{modalData.transIs}</p>
           </div>
 
+          {/* Buttons */}
+          <div className="flex items-center justify-center gap-[12px] mx-2">
+            <div className="border border-[#545454] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px]">
+              <MdOutlineFileDownload size={20} />
+              <h2 className="font-roboto text-[18px] text-[#333333]">Download</h2>
+            </div>
+            <div className="bg-[#90A4AE] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px] font-roboto text-white text-[18px]">
+              Print
+            </div>
+          </div>
         </div>
       </DashboardModal>
     </div>
