@@ -24,28 +24,28 @@ const BarChartComponent = () => {
   };
 
   return (
-    <div>
+    <div className='bg-[#DDE3E6] rounded-[8px]'>
       <div className='flex items-center justify-between py-7'>
-        <h1 className='text-sm md:text-2xl'>Overview</h1>
-      <Select
-            defaultValue="2024 May"
-            style={{
-              width: 120,
-            }}
-            bordered={false}
-            suffixIcon={<MdOutlineKeyboardArrowDown color="gray" fontSize={30} />}
-            onChange={handleChange}
-            options={[
-              {
-                value: '2024 May',
-                label: '2024 May',
-              },
-              {
-                value: '2024 Apr',
-                label: '2024 Apr',
-              }
-            ]}
-          />
+        <h1 className='text-sm md:text-[20px] font-roboto pl-[35px]'>Earnings</h1>
+        <Select
+          defaultValue="2024 May"
+          style={{
+            width: 120,
+          }}
+          bordered={false}
+          suffixIcon={<MdOutlineKeyboardArrowDown color="gray" fontSize={30} />}
+          onChange={handleChange}
+          options={[
+            {
+              value: '2024 May',
+              label: '2024 May',
+            },
+            {
+              value: '2024 Apr',
+              label: '2024 Apr',
+            }
+          ]}
+        />
       </div>
       <ResponsiveContainer width="100%" height={500}>
         <BarChart
@@ -55,18 +55,18 @@ const BarChartComponent = () => {
           margin={{
             top: 5,
             right: 30,
-            left: 20,
+            left: 0,
             bottom: 5,
           }}
         >
-          <CartesianGrid  horizontal={true} vertical={false} />
+          <CartesianGrid horizontal={true} vertical={false} />
           <XAxis dataKey="name" />
           <YAxis
-            tickFormatter={(value) => `${value / 1000}k`} // Converts numbers to "k" format
+            tickFormatter={(value) => `$${value / 1000}k`} // Converts numbers to "k" format
           />
-          <Tooltip cursor={{fill: 'transparent'}} />
+          <Tooltip cursor={{ fill: 'transparent' }} />
           {/* <Legend /> */}
-          <Bar dataKey="uv" fill="#00000" barSize={40}  />
+          <Bar dataKey="uv" fill="#00000" barSize={40} />
         </BarChart>
       </ResponsiveContainer>
     </div>

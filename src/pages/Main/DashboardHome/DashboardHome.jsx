@@ -33,8 +33,6 @@ const DashboardHome = () => {
             <h3 className="font-roboto text-[32px] text-[#333333]">740</h3>
           </div>
         </div>
-
-
       </div>
       <BarChartComponent />
       <DashboardHomeTable />
