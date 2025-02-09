@@ -4,6 +4,7 @@ import { Badge } from "antd";
 import profileImage from "../../assets/images/dash-profile.png";
 import { TbBellRinging } from "react-icons/tb";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { IoNotificationsOutline } from "react-icons/io5";
 import { Select } from 'antd';
 
 const Header = () => {
@@ -15,7 +16,7 @@ const Header = () => {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
-  
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -39,23 +40,27 @@ const Header = () => {
 
   return (
 
-    <div className="w-full h-[88px] flex justify-between items-center rounded-sm py-[16px] px-[32px] shadow-lg bg-white">
-      <div className="text-start space-y-0.5">
-        <p className="text-sm md:text-xl font-light">
+    <div className="w-full h-[78px] flex justify-between items-start rounded-sm  py-[16px]">
+      <div className="text-start space-y-[4px] bg-[#DDE3E6] rounded-[16px] w-4/5 py-[16px] px-[32px]">
+        <p className="text-sm md:text-[24px] font-roboto">
           {"Welcome, Jane Cooper"}
         </p>
-        <p className="text-sm md:text-xl">{"Have a nice day!"}</p>
+        <p className="text-sm md:text-[14px] font-roboto">{"Have a nice day!"}</p>
       </div>
-      <div className="flex gap-x-[41px]">
+
+      {/* Avatar & Notification */}
+      <div className="flex gap-x-[25px]">
         <div
           onClick={(e) => navigate("/notifications")}
           className="relative flex items-center "
         >
-          <Badge style={{ backgroundColor: "#000000", width: '20px', height: '20px', objectFit: 'contain' }} count={1}>
-            <TbBellRinging
-              style={{ cursor: "pointer" }}
-              className={` w-6 h-6 rounded-full shadow-sm  font-bold transition-all`}
-            />
+          <Badge style={{ backgroundColor: "red", objectFit: 'contain', fontSize: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} count={2}>
+            <div className="bg-[#DDE3E6] p-2 rounded-full">
+              <IoNotificationsOutline
+                style={{ cursor: "pointer" }}
+                className={` w-6 h-6 rounded-full shadow-sm  font-bold transition-all`}
+              />
+            </div>
           </Badge>
         </div>
         <div className="flex items-center">
@@ -63,17 +68,18 @@ const Header = () => {
             <img src={profileImage} alt="" className="rounded-full h-[42px] w-[42px]" />
           </div>
           <Select
-            defaultValue="Jane Cooper"
+            defaultValue="Dr. Paul"
             style={{
-              width: 120,
+              width: 80,
             }}
             bordered={false}
-            suffixIcon={<MdOutlineKeyboardArrowDown color="black" fontSize={20} />}
+            // suffixIcon={<MdOutlineKeyboardArrowDown color="black" fontSize={20} />}
+            suffixIcon={null}
             onChange={handleChange}
             options={[
               {
-                value: 'Jane Cooper',
-                label: 'Jane Cooper',
+                value: 'Dr. Paul',
+                label: 'Dr. Paul',
               },
               {
                 value: 'lucy',
