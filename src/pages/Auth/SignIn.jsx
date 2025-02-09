@@ -59,7 +59,7 @@ const SignIn = () => {
     <div className="bg-[#E8EBF0] w-[448px] h-[636px] rounded-[16px]">
       <div className="lg:p-[5%] order-first lg:order-last">
         <div className="w-full py-[44px] px-[51.5px]">
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center pt-[34px]">
             <img src={logo} alt="" className="w-[182px] h-[150px] object-contain" />
           </div>
           <Form
@@ -73,7 +73,7 @@ const SignIn = () => {
             className="text-start"
 
           >
-            <h1 className="text-[24px] text-center font-roboto pt-[24px]">Sign In</h1>
+            <h1 className="text-[24px] text-center font-roboto pt-[24px] font-medium">Sign In</h1>
             <Form.Item
               label={<span className="font-roboto text-[14px] text-black/90">Username</span>}
               name="name"
