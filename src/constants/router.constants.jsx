@@ -76,10 +76,10 @@ export const dashboardItems = [
   //     },
   //   ],
   // },
-  // {
-  //   path: "notifications",
-  //   element: <Notifications />,
-  // },
+  {
+    path: "notifications",
+    element: <Notifications />,
+  },
   // {
   //   path: '/reviews',
   //   element: <Review></Review>
