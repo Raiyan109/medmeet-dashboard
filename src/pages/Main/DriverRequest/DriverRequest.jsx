@@ -122,57 +122,70 @@ const DriverRequest = () => {
       <DashboardModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        maxWidth="400px"
+      // maxWidth="840px"
       // backgroundColor={'#E8EBF0'}
       >
         <div className="py-[24px] font-roboto">
-          <h2 className="text-[18px] text-center mb-4 font-roboto">User Details</h2>
-          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <h2 className="text-[18px] text-center mb-4 font-roboto">Doctor Details</h2>
+
           <div className="flex justify-between mb-2 text-gray-600 px-[16px] py-[20px]">
-            <p className="text-[14px] ">User Name: </p>
+            <p className="text-[14px] ">Doctor Name: </p>
             <p>{modalData.username}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Email</p>
+            <p>Specialization</p>
             <p>{modalData.email}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>User name:</p>
+            <p>Experience:</p>
             <p>{modalData.username}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>A/C number:</p>
+            <p>Clinic Name:</p>
             <p>{modalData.Phone}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>A/C holder name</p>
+            <p>Clinic Address</p>
             <p>{modalData.transIs}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Transaction amount</p>
+            <p>Consultation Fee</p>
             <p>{modalData.transIs}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Doctor name</p>
+            <p>Professional ID Image</p>
             <p>{modalData.transIs}</p>
+          </div>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Medical License (PDF)</p>
+            <p>{modalData.transIs}</p>
+          </div>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>About Doctor</p>
+            <p>{modalData.transIs}</p>
+          </div>
+          <div className="px-[10px] h-[160px] w-full">
+            <textarea className="h-[160px] w-full border border-[#DDDEE0] bg-transparent rounded-[12px] focus:outline-none" ></textarea>
           </div>
 
           {/* Buttons */}
-          {/* <div className="flex items-center justify-center gap-[12px] mx-2">
-          <div className="border border-[#545454] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px]">
-            <MdOutlineFileDownload size={20} />
-            <h2 className="font-roboto text-[18px] text-[#333333]">Download</h2>
+          <div className="flex items-center justify-end gap-[12px] mx-2 mt-[8px]">
+            <div className="border border-[#EE1D23] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px]">
+
+              <h2 className="font-roboto text-[18px] text-[#EE1D23]">Reject</h2>
+            </div>
+            <div className="bg-[#90A4AE] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px] font-roboto text-white text-[18px]">
+              Approve
+            </div>
           </div>
-          <div className="bg-[#90A4AE] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px] font-roboto text-white text-[18px]">
-            Print
-          </div>
-        </div> */}
         </div>
       </DashboardModal>
     </div>

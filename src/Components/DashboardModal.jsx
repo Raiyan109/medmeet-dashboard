@@ -26,7 +26,8 @@ const DashboardModal = ({
       footer={null}
       closeIcon={false}
       style={{
-        maxWidth: maxWidth || "444px",
+        // maxWidth: maxWidth || "444px",
+        width: '840px',
         backgroundColor: backgroundColor,
       }}
     >
