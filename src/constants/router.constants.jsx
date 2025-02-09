@@ -12,7 +12,9 @@ import EditPrivacyPolicy from "../pages/Settings/EditPrivacyPolicy";
 import EditAboutUs from "../pages/Settings/EditAboutUs";
 import AboutUs from "../pages/Settings/AboutUs";
 import Notifications from "../pages/Main/Notifications/Notifications";
-import { FaUser } from "react-icons/fa";
+import { HiOutlineUsers } from "react-icons/hi";
+import { HiOutlineCalendar } from "react-icons/hi";
+import { HiBars4 } from "react-icons/hi2";
 import {
   MdOutlineAdminPanelSettings,
   MdOutlineSecurityUpdateWarning,
@@ -43,6 +45,7 @@ import { PiLaptopThin } from "react-icons/pi";
 import { GrUserManager } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
+import { TbCoin } from "react-icons/tb";
 
 export const dashboardItems = [
   {
@@ -51,12 +54,7 @@ export const dashboardItems = [
     icon: RiDashboardHorizontalFill,
     element: <DashboardHome />,
   },
-  {
-    name: "User",
-    path: "users",
-    icon: FaUser,
-    element: <Guests />,
-  },
+
   // {
   //   name: "Approve Request",
   //   rootPath: "approveRequest",
@@ -86,27 +84,45 @@ export const dashboardItems = [
   // },
 
   {
-    name: "Earning",
+    name: "Earnings",
     path: "earnings",
     icon: TbCash,
     element: <Earnings />,
   },
   {
-    name: "Driver",
-    path: "driver",
-    icon: GrUserManager,
+    name: "Users",
+    path: "users",
+    icon: HiOutlineUsers,
+    element: <Guests />,
+  },
+  {
+    name: "Doctors",
+    path: "doctor",
+    icon: HiOutlineUsers,
     element: <Driver />,
   },
   {
-    name: "Driver Request",
-    path: "driver-request",
+    name: "Manage Request",
+    path: "manage-request",
     icon: PiLaptopThin,
     element: <DriverRequest />,
   },
   {
-    name: "Support",
-    path: "support",
-    icon: BiSupport,
+    name: "Appointments",
+    path: "appointments",
+    icon: HiOutlineCalendar,
+    element: <DriverRequest />,
+  },
+  {
+    name: "Categories",
+    path: "categories",
+    icon: HiBars4,
+    element: <DriverRequest />,
+  },
+  {
+    name: "Withdrawal Request",
+    path: "withdrawal-request",
+    icon: TbCoin,
     element: <Support />,
   },
   {
