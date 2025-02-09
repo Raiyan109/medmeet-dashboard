@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const { fontFamily } = require('tailwindcss/defaultTheme');
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -11,6 +13,10 @@ export default {
         lightGray: '#B0B0B0',
         lightBlueBg: '#F2F5F7',
       },
+      fontFamily: {
+        poppins: ['Poppins', ...fontFamily.sans],
+        roboto: ['Roboto', ...fontFamily.sans]
+      }
     },
   },
   plugins: [],

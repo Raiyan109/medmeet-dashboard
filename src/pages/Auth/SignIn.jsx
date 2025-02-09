@@ -58,7 +58,7 @@ const SignIn = () => {
   return (
     <div className="bg-[#E8EBF0] w-[448px] h-[636px] rounded-[16px]">
       <div className="lg:p-[5%] order-first lg:order-last">
-        <div className="w-full py-[44px] lg:px-[44px]">
+        <div className="w-full py-[44px] px-[51.5px]">
           <div className="flex items-center justify-center">
             <img src={logo} alt="" className="w-[182px] h-[150px] object-contain" />
           </div>
@@ -73,9 +73,9 @@ const SignIn = () => {
             className="text-start"
 
           >
-            <h1 className="text-[24px] text-center">Sign In</h1>
+            <h1 className="text-[24px] text-center font-roboto pt-[24px]">Sign In</h1>
             <Form.Item
-              label={<span className="font-medium text-base">Username</span>}
+              label={<span className="font-roboto text-[14px] text-black/90">Username</span>}
               name="name"
               rules={[
                 {
@@ -88,10 +88,10 @@ const SignIn = () => {
                 },
               ]}
             >
-              <Input size="large" placeholder="admin" />
+              <Input size="large" placeholder="username" style={{ width: '345px', height: '44px', borderRadius: '114px', border: '1px solid #DDDEE0', background: 'transparent', paddingLeft: '12px' }} />
             </Form.Item>
             <Form.Item
-              label={<span className="font-medium text-base">Password</span>}
+              label={<span className="font-roboto text-[14px] text-black/90">Password</span>}
               className="mt-6"
               name="password"
               rules={[
@@ -101,22 +101,24 @@ const SignIn = () => {
                 },
               ]}
             >
-              <Input.Password size="large" placeholder="**********" />
+              <Input.Password size="large" placeholder="**********" style={{ width: '345px', height: '44px', borderRadius: '114px', border: '1px solid #DDDEE0', background: 'transparent', paddingLeft: '12px' }} />
             </Form.Item>
             <div className="flex justify-between items-center">
               <Form.Item name="remember" valuePropName="checked">
-                <Checkbox className="text-base font-medium">
+                <Checkbox className="font-poppins text-[#545454] text-[16px]">
                   Remember me
                 </Checkbox>
               </Form.Item>
               <Form.Item>
-                <Button
+
+                <button className="text-[16px] text-[#333333] font-poppins" onClick={() => navigate("/auth/forgot-password")}>Forget password?</button>
+                {/* <Button
                   onClick={() => navigate("/auth/forgot-password")}
                   type="link"
-                  className="text-base font-medium text-info"
+                  className="text-[16px] text-[#333333] font-poppins"
                 >
                   Forget password?
-                </Button>
+                </Button> */}
               </Form.Item>
             </div>
             <div className="w-full flex justify-center ">
@@ -124,7 +126,8 @@ const SignIn = () => {
                 type="primary"
                 size="large"
                 htmlType="submit"
-                className="px-2 w-full bg-playground"
+                className="px-2 w-full bg-[#90A4AE]"
+                style={{ width: '345px', height: '48px', borderRadius: '50px' }}
               >
                 Sign In
               </Button>

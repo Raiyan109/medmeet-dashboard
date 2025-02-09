@@ -25,6 +25,13 @@ export const mainTheme = {
     //     itemSelectedBg: "#1F2852",
     //     itemSelectedColor: "#ffffff",
     //   },
+    // Checkbox: {
+    //   controlSize: 20, // Adjust the size
+    //   colorPrimary: "#1E65FF", // Checked background color
+    //   colorBorder: "#545454", // Default border color
+    //   borderRadius: "50%", // Make it circular
+    // },
+
     Button: {
       // defaultHoverBg: "#00000",
       // defaultHoverColor: "#FFFFFF",
