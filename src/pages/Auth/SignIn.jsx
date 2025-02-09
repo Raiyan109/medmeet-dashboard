@@ -3,6 +3,7 @@ import Form from "antd/es/form/Form";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import image from "../../assets/images/reset-pass.png";
+import logo from '../../assets/images/logo1.png'
 // import { useDispatch } from "react-redux";
 // import { usePostLoginMutation } from "../../redux/features/Auth/authApi";
 // import { setUser } from "../../redux/features/Auth/authSlice";
@@ -55,15 +56,11 @@ const SignIn = () => {
     // }
   };
   return (
-    <div className="min-h-[92vh] w-full grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-1 lg:gap-8">
-      <div className="lg:border-r-2 border-primary mx-auto w-[92%] lg:p-[15%] lg:pr-[20%] ">
-        <img src={image} alt="" />
-      </div>
+    <div className="bg-[#E8EBF0] w-[448px] h-[636px] rounded-[16px]">
       <div className="lg:p-[5%] order-first lg:order-last">
         <div className="w-full py-[44px] lg:px-[44px]">
-          <div className="pb-[30px] space-y-2">
-            <h1 className="text-[33px] text-center font-semibold ">Login to Account!</h1>
-            <p className="text-hash text-center lg:text-lg">Please enter your email and password to continue.</p>
+          <div className="flex items-center justify-center">
+            <img src={logo} alt="" className="w-[182px] h-[150px] object-contain" />
           </div>
           <Form
             name="normal_login"
@@ -74,23 +71,24 @@ const SignIn = () => {
             onFinish={onFinish}
             requiredMark={false}
             className="text-start"
-            
+
           >
+            <h1 className="text-[24px] text-center">Sign In</h1>
             <Form.Item
-            label={<span className="font-medium text-base">Email</span>}
-              name="email"
+              label={<span className="font-medium text-base">Username</span>}
+              name="name"
               rules={[
                 {
-                  type: "email",
-                  message: "Please input a valid Email!",
+                  type: "name",
+                  message: "Please input a valid User Name!",
                 },
                 {
                   required: true,
-                  message: "Please input your Email!",
+                  message: "Please input your User Name!",
                 },
               ]}
             >
-              <Input size="large" placeholder="admin@gmail.com" />
+              <Input size="large" placeholder="admin" />
             </Form.Item>
             <Form.Item
               label={<span className="font-medium text-base">Password</span>}
@@ -122,14 +120,14 @@ const SignIn = () => {
               </Form.Item>
             </div>
             <div className="w-full flex justify-center ">
-                <Button
-                  type="primary"
-                  size="large"
-                  htmlType="submit"
-                  className="px-2 w-full bg-playground"
-                >
-                  Sign In
-                </Button>
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                className="px-2 w-full bg-playground"
+              >
+                Sign In
+              </Button>
             </div>
           </Form>
         </div>
