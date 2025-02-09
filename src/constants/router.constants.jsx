@@ -47,6 +47,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { TbCoin } from "react-icons/tb";
 import Doctor from "../pages/Main/Doctor/Doctor";
 import Appointments from "../pages/Main/Appointments/Appointments";
+import Categories from "../pages/Main/Categories/Categories";
 
 export const dashboardItems = [
   {
@@ -118,7 +119,7 @@ export const dashboardItems = [
     name: "Categories",
     path: "categories",
     icon: HiBars4,
-    element: <DriverRequest />,
+    element: <Categories />,
   },
   {
     name: "Withdrawal Request",
