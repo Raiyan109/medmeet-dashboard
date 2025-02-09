@@ -30,7 +30,6 @@ import Review from "../pages/Main/Users/Review";
 import StudioList from "../pages/Main/StudioList/StudioList";
 import TrainerList from "../pages/Main/TrainerList/TrainerList";
 import Earnings from "../pages/Main/Earnings/Earnings";
-import Driver from "../pages/Main/Driver/Driver";
 import DriverRequest from "../pages/Main/DriverRequest/DriverRequest";
 import Setting from "../pages/Main/Setting/Setting";
 import Support from "../pages/Main/Support/Support";
@@ -46,6 +45,7 @@ import { GrUserManager } from "react-icons/gr";
 import { BiSupport } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbCoin } from "react-icons/tb";
+import Doctor from "../pages/Main/Doctor/Doctor";
 
 export const dashboardItems = [
   {
@@ -99,7 +99,7 @@ export const dashboardItems = [
     name: "Doctors",
     path: "doctor",
     icon: HiOutlineUsers,
-    element: <Driver />,
+    element: <Doctor />,
   },
   {
     name: "Manage Request",
