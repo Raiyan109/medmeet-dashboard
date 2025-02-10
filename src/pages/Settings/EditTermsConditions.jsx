@@ -52,7 +52,7 @@ const EditTermsConditions = () => {
       {/* Back button */}
       <div className="flex items-center gap-2 text-xl cursor-pointer" onClick={() => navigate(-1)}>
         <GoArrowLeft size={30} />
-        <h1 className="font-roboto text-[24px]">Terms & Condition</h1>
+        <h1 className="font-roboto text-[24px]">Edit Terms & Condition</h1>
       </div>
       <div className="rounded-lg py-4  mt-8 bg-[#DDE3E6] h-[575px]">
         <div className="space-y-[24px] min-h-[83vh]  rounded-2xl">
