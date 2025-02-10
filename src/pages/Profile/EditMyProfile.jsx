@@ -33,7 +33,7 @@ const EditMyProfile = () => {
   return (
     <>
       {/* Back button */}
-      <div className="flex items-center gap-2 text-xl cursor-pointer" onClick={() => navigate(-1)}>
+      <div className="flex items-center gap-2 text-xl cursor-pointer pt-[45px]" onClick={() => navigate(-1)}>
         <GoArrowLeft size={30} />
         <h1 className="font-roboto text-[24px]">Personal information</h1>
       </div>

@@ -74,6 +74,8 @@ const SignIn = () => {
 
           >
             <h1 className="text-[24px] text-center font-roboto pt-[24px] font-medium">Sign In</h1>
+
+            {/* UserName */}
             <Form.Item
               label={<span className="font-roboto text-[14px] text-black/90">Username</span>}
               name="name"
@@ -90,6 +92,8 @@ const SignIn = () => {
             >
               <Input size="large" placeholder="username" style={{ width: '345px', height: '44px', borderRadius: '114px', border: '1px solid #DDDEE0', background: 'transparent', paddingLeft: '12px' }} />
             </Form.Item>
+
+            {/* Password */}
             <Form.Item
               label={<span className="font-roboto text-[14px] text-black/90">Password</span>}
               className="mt-6"
@@ -103,6 +107,8 @@ const SignIn = () => {
             >
               <Input.Password size="large" placeholder="**********" style={{ width: '345px', height: '44px', borderRadius: '114px', border: '1px solid #DDDEE0', background: 'transparent', paddingLeft: '12px' }} />
             </Form.Item>
+
+            {/* Checkbox */}
             <div className="flex justify-between items-center">
               <Form.Item name="remember" valuePropName="checked">
                 <Checkbox className="font-poppins text-[#545454] text-[16px]">
