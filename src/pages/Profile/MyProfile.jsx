@@ -23,7 +23,7 @@ const MyProfile = () => {
   // console.log(code);
   return (
     <>
-      <div className="flex items-center gap-2 text-xl">
+      <div className="flex items-center gap-2 text-xl cursor-pointer" onClick={() => navigate(-1)}>
         <FaAngleLeft />
         <h1>Personal information</h1>
       </div>
