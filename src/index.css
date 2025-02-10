@@ -53,12 +53,12 @@
   padding: 12px 12px;
   color: #222222;
   border-radius: 8px;
-  border: 1px solid #888787;
+  border: 1px solid #DDDEE0;
   margin-left: 2px;
 }
 
 .PhoneInputInput:focus {
-  border: 1px solid black;
+  border: 1px solid #DDDEE0;
 }
 
 .PhoneInputInput:hover {
@@ -70,14 +70,14 @@
   margin-right: 15px !important;
   display: flex !important;
   gap: 15px;
-  /* background-color: #EFFAFF; */
+  background-color: #ffffff;
   padding: 14px 14px 14px 18px;
   border-radius: 8px;
-  border: 1px solid #888787;
+  border: 1px solid #DDDEE0;
 }
 
 .PhoneInputCountry:focus {
-  border: 1px solid black;
+  border: 1px solid #DDDEE0;
 }
 
 .PhoneInputCountry:hover {

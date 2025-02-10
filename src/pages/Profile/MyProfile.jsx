@@ -61,15 +61,15 @@ const MyProfile = () => {
             {/* Profile Image */}
             <div className="col-span-3 space-y-6 ">
               <div className="min-h-[360px] w-[300px] rounded-xl flex flex-col items-center justify-center p-8 bg-[#DDE3E6]">
-                <div className="my-2">
+                <div className="mt-2 pb-[31px]">
                   <img
                     src={dashProfile}
                     alt=""
-                    className="h-28 w-28 rounded-full border-4 border-black"
+                    className="h-28 w-28 rounded-full"
                   />
                 </div>
-                <h5 className="text-lg text-[#222222]">{"Profile"}</h5>
-                <h4 className="text-2xl text-[#222222]">{"Admin"}</h4>
+                <h5 className="text-[18px] font-poppins text-[#545454] mb-[12px]">{"Profile"}</h5>
+                <h4 className="text-[24px] text-[#333333] font-poppins">{"Admin"}</h4>
               </div>
 
             </div>
