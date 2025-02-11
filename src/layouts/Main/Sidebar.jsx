@@ -136,10 +136,10 @@ const Sidebar = () => {
           </ul>
         </div>
         {/* Logout */}
-        <div className="p-4 mt-auto  text-center">
+        <div className="p-4 mt-auto mb-8  text-center">
           <button
             onClick={handleLogOut}
-            className=" w-full bg-white text-black  font-semibold px-12 py-3 flex items-center justify-center gap-3 text-md outline-none rounded-[8px]"
+            className=" w-full bg-white text-black  font-semibold px-5 py-3 flex items-center  gap-3 text-md outline-none rounded-[8px]"
           >
             <img className="" src={logout} alt="" />
             <span className="text-red font-light">Logout</span>
