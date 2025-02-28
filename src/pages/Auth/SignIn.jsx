@@ -1,60 +1,45 @@
 import { Button, Checkbox, Input } from "antd";
 import Form from "antd/es/form/Form";
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import image from "../../assets/images/reset-pass.png";
 import logo from "../../assets/images/logo1.png";
-// import { useDispatch } from "react-redux";
-// import { usePostLoginMutation } from "../../redux/features/Auth/authApi";
-// import { setUser } from "../../redux/features/Auth/authSlice";
+import { useLogInMutation } from "../../features/user/authSlice";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/user/userSlice";
+import localStorageUtil from "../../utils/localstorageutils";
+import toast from "react-hot-toast";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 // import Swal from "sweetalert2";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // const dispatch = useDispatch();
-  // const [setData, { isLoading }] = usePostLoginMutation();
+  const dispatch = useDispatch();
+
+  const [logInUser, { isLoading }] = useLogInMutation();
+
   const onFinish = async (values) => {
-    console.log(values);
-    // navigate(location.state ? location.state : "/");
-    // try {
-    //   const response = await setData(values);
-    //   // console.log(response);
-    //   if (response?.data?.statusCode == 200) {
-    //     if (response?.data?.data?.user?.role === "ADMIN") {
-    //       localStorage.setItem("token", response?.data?.data?.token);
-    //       dispatch(
-    //         setUser({
-    //           user: response?.data?.data?.user,
-    //           token: response?.data?.data?.token,
-    //         })
-    //       );
-    //       // navigate(from, { replace: true });
-    //       navigate(location.state ? location.state : "/");
-    //     } else {
-    //       Swal.fire({
-    //         icon: "error",
-    //         title: "Login Failed!!",
-    //         text: "You are not a Valid",
-    //       });
-    //     }
-    //   } else {
-    //     Swal.fire({
-    //       icon: "error",
-    //       title:
-    //         response?.data?.message ||
-    //         response?.error?.data?.message ||
-    //         "Login Failed!!",
-    //       text: "Something went wrong. Please try again later.",
-    //     });
-    //   }
-    // } catch (error) {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Login Failed!!",
-    //     text: "Something went wrong. Please try again later.",
-    //   });
-    // }
+    try {
+      const res = await logInUser(values);
+      if (res?.data?.success && res?.data?.data?.accessToken) {
+        let userProfile = res?.data?.data?.user;
+        if (userProfile?.password) {
+          const { password, ...rest } = userProfile;
+          localStorageUtil.setItem("user_profile", rest);
+          localStorageUtil.setItem("rpev", false); // rpev: reset password email verification
+          dispatch(setUser(rest));
+        } else {
+          localStorageUtil.setItem("user_profile", userProfile);
+          localStorageUtil.setItem("rpev", false); // rpev: reset password email verification
+          dispatch(setUser(userProfile));
+        }
+        toast.success("Login Successfull.");
+        navigate("/");
+      } else if (res?.error) {
+        toast.error(res?.error?.data?.message);
+      }
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
   };
   return (
     <div className="bg-[#E8EBF0] w-[448px] h-[636px] rounded-[16px]">
@@ -88,7 +73,7 @@ const SignIn = () => {
                   Username
                 </span>
               }
-              name="name"
+              name="uniqueId"
               rules={[
                 {
                   type: "name",
@@ -169,13 +154,18 @@ const SignIn = () => {
             </div>
             <div className="w-full flex justify-center ">
               <Button
+                disabled={isLoading}
                 type="primary"
                 size="large"
                 htmlType="submit"
                 className="px-2 w-full bg-[#90A4AE]"
                 style={{ width: "345px", height: "48px", borderRadius: "50px" }}
               >
-                Sign In
+                {isLoading ? (
+                  <LoadingSpinner color="stroke-[#333333]" size={5} />
+                ) : (
+                  "Sign In"
+                )}
               </Button>
             </div>
           </Form>

@@ -29,3 +29,5 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const { useLogInMutation } = extendedAuthSlice;

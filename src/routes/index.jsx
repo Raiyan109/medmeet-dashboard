@@ -9,6 +9,7 @@ import VerifyEmail from "../pages/Auth/VerifyEmail";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import ChatPage from "../pages/Main/Support/ChatPage";
 import ChangePassword from "../pages/Main/Setting/Change-password/ChangePassword";
+import PublicRoute from "./PublicRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,11 +19,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/support-chat",
-    element: <ChatPage />
+    element: <ChatPage />,
   },
   {
     path: "/change-password",
-    element: <ChangePassword />
+    element: <ChangePassword />,
   },
   {
     path: "/auth",
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/auth/sign-in",
-        element: <SignIn />,
+        element: (
+          <PublicRoute>
+            <SignIn />
+          </PublicRoute>
+        ),
       },
       {
         path: "/auth/forgot-password",
