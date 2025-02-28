@@ -3,7 +3,7 @@ import Form from "antd/es/form/Form";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import image from "../../assets/images/reset-pass.png";
-import logo from '../../assets/images/logo1.png'
+import logo from "../../assets/images/logo1.png";
 // import { useDispatch } from "react-redux";
 // import { usePostLoginMutation } from "../../redux/features/Auth/authApi";
 // import { setUser } from "../../redux/features/Auth/authSlice";
@@ -15,7 +15,8 @@ const SignIn = () => {
   // const dispatch = useDispatch();
   // const [setData, { isLoading }] = usePostLoginMutation();
   const onFinish = async (values) => {
-    navigate(location.state ? location.state : "/");
+    console.log(values);
+    // navigate(location.state ? location.state : "/");
     // try {
     //   const response = await setData(values);
     //   // console.log(response);
@@ -60,7 +61,11 @@ const SignIn = () => {
       <div className="lg:p-[5%] order-first lg:order-last">
         <div className="w-full py-[44px] px-[51.5px]">
           <div className="flex items-center justify-center pt-[34px]">
-            <img src={logo} alt="" className="w-[182px] h-[150px] object-contain" />
+            <img
+              src={logo}
+              alt=""
+              className="w-[182px] h-[150px] object-contain"
+            />
           </div>
           <Form
             name="normal_login"
@@ -71,13 +76,18 @@ const SignIn = () => {
             onFinish={onFinish}
             requiredMark={false}
             className="text-start"
-
           >
-            <h1 className="text-[24px] text-center font-roboto pt-[24px] font-medium">Sign In</h1>
+            <h1 className="text-[24px] text-center font-roboto pt-[24px] font-medium">
+              Sign In
+            </h1>
 
             {/* UserName */}
             <Form.Item
-              label={<span className="font-roboto text-[14px] text-black/90">Username</span>}
+              label={
+                <span className="font-roboto text-[14px] text-black/90">
+                  Username
+                </span>
+              }
               name="name"
               rules={[
                 {
@@ -90,12 +100,27 @@ const SignIn = () => {
                 },
               ]}
             >
-              <Input size="large" placeholder="username" style={{ width: '345px', height: '44px', borderRadius: '114px', border: '1px solid #DDDEE0', background: 'transparent', paddingLeft: '12px' }} />
+              <Input
+                size="large"
+                placeholder="username"
+                style={{
+                  width: "345px",
+                  height: "44px",
+                  borderRadius: "114px",
+                  border: "1px solid #DDDEE0",
+                  background: "transparent",
+                  paddingLeft: "12px",
+                }}
+              />
             </Form.Item>
 
             {/* Password */}
             <Form.Item
-              label={<span className="font-roboto text-[14px] text-black/90">Password</span>}
+              label={
+                <span className="font-roboto text-[14px] text-black/90">
+                  Password
+                </span>
+              }
               className="mt-6"
               name="password"
               rules={[
@@ -105,7 +130,18 @@ const SignIn = () => {
                 },
               ]}
             >
-              <Input.Password size="large" placeholder="**********" style={{ width: '345px', height: '44px', borderRadius: '114px', border: '1px solid #DDDEE0', background: 'transparent', paddingLeft: '12px' }} />
+              <Input.Password
+                size="large"
+                placeholder="**********"
+                style={{
+                  width: "345px",
+                  height: "44px",
+                  borderRadius: "114px",
+                  border: "1px solid #DDDEE0",
+                  background: "transparent",
+                  paddingLeft: "12px",
+                }}
+              />
             </Form.Item>
 
             {/* Checkbox */}
@@ -116,8 +152,12 @@ const SignIn = () => {
                 </Checkbox>
               </Form.Item>
               <Form.Item>
-
-                <button className="text-[16px] text-[#333333] font-poppins" onClick={() => navigate("/auth/forgot-password")}>Forget password?</button>
+                <button
+                  className="text-[16px] text-[#333333] font-poppins"
+                  onClick={() => navigate("/auth/forgot-password")}
+                >
+                  Forget password?
+                </button>
                 {/* <Button
                   onClick={() => navigate("/auth/forgot-password")}
                   type="link"
@@ -133,7 +173,7 @@ const SignIn = () => {
                 size="large"
                 htmlType="submit"
                 className="px-2 w-full bg-[#90A4AE]"
-                style={{ width: '345px', height: '48px', borderRadius: '50px' }}
+                style={{ width: "345px", height: "48px", borderRadius: "50px" }}
               >
                 Sign In
               </Button>
