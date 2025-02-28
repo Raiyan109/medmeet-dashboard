@@ -1,7 +1,7 @@
 import localStorageUtil from "../../utils/localstorageutils";
 import { apiSlice } from "../api/apiSlice";
 
-const token = 9;
+const token = localStorageUtil.getItem("token");
 
 export const extendedAuthSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -30,4 +30,4 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLogInMutation } = extendedAuthSlice;
+export const { useLogInMutation, useGetAllUSersQuery } = extendedAuthSlice;
