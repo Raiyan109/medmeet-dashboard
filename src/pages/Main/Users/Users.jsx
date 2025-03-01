@@ -147,7 +147,7 @@ const Users = () => {
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Country: </p>
+            <p>Country:</p>
             <p>{modalData.country || "N/A"}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
