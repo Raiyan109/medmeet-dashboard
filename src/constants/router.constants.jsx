@@ -30,7 +30,6 @@ import Review from "../pages/Main/Users/Review";
 import StudioList from "../pages/Main/StudioList/StudioList";
 import TrainerList from "../pages/Main/TrainerList/TrainerList";
 import Earnings from "../pages/Main/Earnings/Earnings";
-import DriverRequest from "../pages/Main/DriverRequest/DriverRequest";
 import Setting from "../pages/Main/Setting/Setting";
 import Support from "../pages/Main/Support/Support";
 import earningImg from "../assets/images/earnings.png";
@@ -50,6 +49,7 @@ import Appointments from "../pages/Main/Appointments/Appointments";
 import Categories from "../pages/Main/Categories/Categories";
 import WithdrawRequest from "../pages/Main/WithdrawRequest/WithdrawRequest";
 import SetPercentage from "../pages/Settings/SetPercentage";
+import ManageRequest from "../pages/Main/ManageRequest/ManageRequest";
 
 export const dashboardItems = [
   {
@@ -109,7 +109,7 @@ export const dashboardItems = [
     name: "Manage Request",
     path: "manage-request",
     icon: PiLaptopThin,
-    element: <DriverRequest />,
+    element: <ManageRequest />,
   },
   {
     name: "Appointments",
