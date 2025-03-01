@@ -6,6 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import exlamIcon from "../../../assets/images/exclamation-circle.png";
 import { MdOutlineFileDownload } from "react-icons/md";
+import { TbCalendar } from "react-icons/tb";
 
 const Earnings = () => {
 
@@ -76,11 +77,15 @@ const Earnings = () => {
   return (
     <div className="rounded-lg bg-[#DDE3E6] mt-8 recent-users-table py-[20px]">
       <div className="flex justify-between px-2">
-        <h3 className="text-[20px] font-poppins text-[#333333] mb-4 pl-[20px]">Recent Transactions</h3>
+        <h3 className="text-[20px] font-poppins text-[#5C5C5C] mb-4 pl-[20px] font-medium">Recent Transactions</h3>
         <div className="flex items-center gap-4 mb-6">
-          <DatePicker placeholder="Date" className="w-[164px] h-[36px] rounded-[86px] border-none outline-none" />
-          <Input placeholder="User Name" className="w-[187px] h-[36px] rounded-[86px] border-none outline-none" />
-          <Input placeholder="Doctor Name" className="w-[187px] h-[36px] rounded-[86px] border-none outline-none" />
+          <DatePicker
+            placeholder="Date"
+            className="w-[164px] h-[36px] rounded-[86px] border-none outline-none placeholder:text-[#8A8A8A] placeholder:text-[14px] placeholder:font-poppins font-poppins text-[#8A8A8A]"
+            suffixIcon={<TbCalendar color="black" size={20} />}
+          />
+          <Input placeholder="User Name" className="w-[187px] h-[36px] rounded-[86px] border-none outline-none placeholder:text-[#8A8A8A] placeholder:text-[14px] placeholder:font-poppins font-poppins" />
+          <Input placeholder="Doctor Name" className="w-[187px] h-[36px] rounded-[86px] border-none outline-none placeholder:text-[#8A8A8A] placeholder:text-[14px] placeholder:font-poppins font-poppins" />
 
           <button style={{ border: 'none', backgroundColor: '#545454', color: 'white', borderRadius: '50%', padding: '7px' }}><IoSearch size={20} /></button>
         </div>

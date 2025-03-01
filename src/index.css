@@ -365,4 +365,9 @@
 .ant-table table {
   font-size: 14px;
   color: #545454;
+  font-family: 'Poppins', sans-serif;
+}
+
+.ant-table-thead {
+  font-weight: bold;
 }
