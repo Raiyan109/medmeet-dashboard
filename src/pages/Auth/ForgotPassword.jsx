@@ -50,7 +50,7 @@ const ForgotPassword = () => {
           </div>
           <div className="flex flex-col items-center lg:items-start">
             <div>
-              {true && (
+              {evMessage && (
                 <p className="text-lg text-center text-[#ff4a2e] font-bold">
                   {evMessage}
                 </p>

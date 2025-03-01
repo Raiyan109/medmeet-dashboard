@@ -35,6 +35,13 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
         body: uniqueId,
       }),
     }),
+    verifyEmail: builder.mutation({
+      query: (data) => ({
+        url: "user/verify-email",
+        body: data,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -42,4 +49,5 @@ export const {
   useLogInMutation,
   useGetAllUSersQuery,
   useForgotPasswordMutation,
+  useVerifyEmailMutation,
 } = extendedAuthSlice;
