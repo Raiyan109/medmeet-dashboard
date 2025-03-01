@@ -6,8 +6,8 @@ const token = localStorageUtil.getItem("token");
 export const extendedAuthSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllUSers: builder.query({
-      query: () => ({
-        url: "/user",
+      query: (searchTerms) => ({
+        url: `/user?searchTerm=${searchTerms || ""}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
