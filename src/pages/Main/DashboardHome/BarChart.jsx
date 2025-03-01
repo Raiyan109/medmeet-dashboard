@@ -25,44 +25,47 @@ const BarChartComponent = () => {
 
   return (
     <div className='bg-[#DDE3E6] rounded-[8px]'>
-      <div className='flex items-center justify-between py-7'>
-        <h1 className='text-sm md:text-[20px] font-roboto pl-[35px]'>Earnings</h1>
+      <div className='flex items-center justify-between py-[20px]'>
+        <h1 className='text-sm md:text-[20px] font-roboto pl-[20px] font-semibold text-[#333333]'>Earnings</h1>
         <Select
-          defaultValue="2024 May"
+          defaultValue="2024"
           style={{
-            width: 120,
+            width: 90,
           }}
           bordered={false}
           suffixIcon={<MdOutlineKeyboardArrowDown color="gray" fontSize={30} />}
           onChange={handleChange}
           options={[
             {
-              value: '2024 May',
-              label: '2024 May',
+              value: '2024',
+              label: '2024',
             },
             {
-              value: '2024 Apr',
-              label: '2024 Apr',
+              value: '2024',
+              label: '2024',
             }
           ]}
         />
       </div>
-      <ResponsiveContainer width="100%" height={500}>
+      <ResponsiveContainer width="100%" height={285}>
         <BarChart
           width={500}
-          height={300}
+          height={285}
           data={data}
           margin={{
             top: 5,
             right: 30,
             left: 0,
-            bottom: 5,
+            bottom: 8,
           }}
         >
           <CartesianGrid horizontal={true} vertical={false} />
           <XAxis dataKey="name" />
           <YAxis
             tickFormatter={(value) => `$${value / 1000}k`} // Converts numbers to "k" format
+            ticks={[0, 2000, 4000, 6000, 8000, 10000]}
+            tickLine={false}
+            axisLine={false}
           />
           <Tooltip cursor={{ fill: 'transparent' }} />
           {/* <Legend /> */}

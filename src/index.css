@@ -12,7 +12,9 @@
 }
 
 
-/* Input Label gap */
+
+
+/* ===================  INPUT LABEL GAP STYLES =============================== */
 .ant-col.ant-form-item-label {
   padding: 0 0 4px !important;
 }
@@ -46,7 +48,12 @@
   padding: 0 0 0 0 !important;
 }
 
-/* phone Input  */
+
+
+
+
+/* ===================  PHONE INPUT STYLES =============================== */
+
 .PhoneInputInput {
   outline: none;
   /* background-color: #EFFAFF; */
@@ -85,14 +92,12 @@
   transition: all 0.3s;
 }
 
-/* responsive sidebar styles */
-/* .ant-menu {
-  background-color: none;
-} */
 
-/* #message-uesrs {
-  scrollbar-width: thin;
-} */
+
+
+
+
+/* ===================  Width of the scrollbar =============================== */
 #message-uesrs::-webkit-scrollbar {
   width: 4px;
   /* Width of the scrollbar */
@@ -119,7 +124,10 @@
   /* Darker thumb when hovered */
 }
 
-/* recent-users-table header backgroundColor */
+
+
+
+/* ===================  ANT TABLE HEAD =============================== */
 .recent-users-table .ant-table-thead>tr>th {
   background: #333333;
   text-align: center;
@@ -150,8 +158,11 @@
   color: gray;
 }
 
-/* React Quill */
-/* Parent Container */
+
+
+
+
+/* ===================  REACT QUILL STYLES =============================== */
 .ql-toolbar-container {
   display: flex;
   flex-direction: column;
@@ -334,4 +345,12 @@
   /* Allow the editor to grow */
   overflow-y: auto;
   /* Enable vertical scrolling if necessary */
+}
+
+
+
+
+/* ===================  ANT SELECT SPAN FONT-SIZE STYLES ========================== */
+.ant-select-single .ant-select-selector {
+  font-size: 18px;
 }
