@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { DatePicker, Input, Table } from "antd";
-import { useGetAllUSersQuery } from "../../../features/user/authSlice";
 import DashboardModal from "../../../Components/DashboardModal";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import exlamIcon from "../../../assets/images/exclamation-circle.png";
 import dayjs from "dayjs"; // For date formatting
+import { useGetAllUsersQuery } from "../../../features/user/authSlice";
 
 const Users = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +30,7 @@ const Users = () => {
     data: res,
     isLoading,
     isError,
-  } = useGetAllUSersQuery(debouncedSearchTerm);
+  } = useGetAllUsersQuery(debouncedSearchTerm);
 
   // Filter users by selected date
   useEffect(() => {
