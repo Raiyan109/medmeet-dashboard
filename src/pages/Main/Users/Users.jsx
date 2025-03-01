@@ -17,7 +17,6 @@ const Users = () => {
   const showModal = (data) => {
     setIsModalOpen(true);
     setModalData(data);
-    console.log(data);
   };
 
   // Columns for Table
@@ -61,7 +60,11 @@ const Users = () => {
       username: user.name || "N/A",
       email: user.email || "N/A",
       date: user.createdAt
-        ? new Date(user.createdAt).toLocaleDateString()
+        ? new Date(user.createdAt).toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })
         : "N/A",
       ...user, // Pass full user object for modal display
     })) || [];
@@ -134,22 +137,22 @@ const Users = () => {
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Email</p>
+            <p>Email: </p>
             <p>{modalData.email || "N/A"}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Phone number</p>
+            <p>Phone number:</p>
             <p>{modalData.phoneNumber || "N/A"}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Country</p>
+            <p>Country:</p>
             <p>{modalData.country || "N/A"}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Joining date</p>
+            <p>Joining date:</p>
             <p>{modalData.date || "N/A"}</p>
           </div>
         </div>

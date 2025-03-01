@@ -12,6 +12,7 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
           Authorization: `Bearer ${token}`,
         },
       }),
+      providesTags: ["USER"],
     }),
     logIn: builder.mutation({
       query: (credentials) => {
