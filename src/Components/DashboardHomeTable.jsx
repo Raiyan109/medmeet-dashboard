@@ -46,7 +46,7 @@ const DashboardHomeTable = () => {
       key: "Review",
       aligen: 'center',
       render: (_, data) => (
-        <div className="  items-center justify-around textcenter flex">
+        <div className="flex items-start">
           {/* Review Icon */}
           <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full cursor-pointer" onClick={() => showModal(data)} />
           {/* <Link to={'/reviews'} className="btn bg-black text-white px-3 py-1 text-sm rounded-full">
@@ -73,13 +73,13 @@ const DashboardHomeTable = () => {
 
   return (
     <div className="rounded-lg bg-[#DDE3E6] mt-8 recent-users-table py-[20px]">
-      <h3 className="text-[20px] font-poppins text-[#333333] mb-4 pl-[20px]">Recent Transactions</h3>
+      <h3 className="text-[20px] font-poppins text-[#333333] mb-4 pl-[20px] font-medium">Recent Transactions</h3>
       {/* Ant Design Table */}
       <Table
         columns={columns}
         dataSource={data}
         pagination={{ position: ["bottomCenter"] }}
-        className="rounded-lg font-poppins"
+        className="rounded-lg font-poppins text-[14px]"
       />
 
       {/* Dashboard Modal */}

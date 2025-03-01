@@ -130,13 +130,13 @@
 /* ===================  ANT TABLE HEAD =============================== */
 .recent-users-table .ant-table-thead>tr>th {
   background: #333333;
-  text-align: center;
+  /* text-align: center; */
   font-weight: lighter;
   font-size: 18px;
 }
 
 .recent-users-table .ant-table-tbody>.ant-table-row>.ant-table-cell {
-  text-align: center;
+  /* text-align: center; */
   border-bottom: 1px solid #b9b5b5;
 }
 
@@ -353,4 +353,16 @@
 /* ===================  ANT SELECT SPAN FONT-SIZE STYLES ========================== */
 .ant-select-single .ant-select-selector {
   font-size: 18px;
+}
+
+
+
+
+.ant-table-tbody>tr>td {
+  border-bottom: none !important;
+}
+
+.ant-table table {
+  font-size: 14px;
+  color: #545454;
 }

@@ -85,14 +85,13 @@ export const mainTheme = {
     //   },
     Table: {
       colorTextHeading: "#758DFF",
-      colorBgContainer: "#FFFFFF66",
+      colorBgContainer: "#DDE3E6",
       // colorText: "#ffffff",
       headerBg: "#052255",
       headerColor: "#ffffff",
       headerBorderRadius: 0,
       borderRadius: 0,
-      headerSplitColor: "none",
-
+      headerSplitColor: 'transparent'
     },
     Modal: {
       // contentBg: "#5271FF",

@@ -6,6 +6,7 @@ import { TbBellRinging } from "react-icons/tb";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { Select } from 'antd';
+import { HiOutlineBell } from "react-icons/hi2";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const Header = () => {
         >
           <Badge style={{ backgroundColor: "red", objectFit: 'contain', fontSize: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} count={2}>
             <div className="bg-[#DDE3E6] p-2 rounded-full">
-              <IoNotificationsOutline
+              <HiOutlineBell
                 style={{ cursor: "pointer" }}
                 className={` w-6 h-6 rounded-full shadow-sm  font-bold transition-all`}
               />
