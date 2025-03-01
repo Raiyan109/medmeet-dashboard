@@ -50,7 +50,7 @@ const Earnings = () => {
       key: "Review",
       aligen: 'center',
       render: (_, data) => (
-        <div className="  items-center justify-around textcenter flex " >
+        <div className="flex items-center justify-start text-center" >
           {/* Review Icon */}
           <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full cursor-pointer" onClick={() => showModal(data)} />
           {/* <Link to={'/reviews'} className="btn bg-black text-white px-3 py-1 text-sm rounded-full">

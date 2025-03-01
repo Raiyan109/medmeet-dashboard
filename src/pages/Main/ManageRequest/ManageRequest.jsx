@@ -43,10 +43,8 @@ const ManageRequest = () => {
       dataIndex: "status",
       key: "status",
       render: (text) => (
-        <div className="  text-yellow-500 font-roboto text-[14px] flex items-center justify-center">
-          <div className="w-[75px] h-[24px] rounded-[37px] bg-white">
-            {text}
-          </div>
+        <div className="w-[75px] h-[24px] rounded-[37px] bg-white text-yellow-500 font-roboto text-[14px] flex items-center justify-center">
+          {text}
         </div>
       )
     },
@@ -55,7 +53,7 @@ const ManageRequest = () => {
       key: "Review",
       aligen: 'center',
       render: (_, data) => (
-        <div className="  items-center justify-around text-center flex " >
+        <div className="flex items-center justify-start text-center" >
           {/* Review Icon */}
           <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full cursor-pointer" onClick={() => showModal(data)} />
           {/* <Link to={'/reviews'} className="btn bg-black text-white px-3 py-1 text-sm rounded-full">
