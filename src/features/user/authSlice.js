@@ -42,6 +42,16 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
+    resetPass: builder.mutation({
+      query: ({ values, resetToken }) => ({
+        url: "/user/reset-password",
+        body: values,
+        method: "POST",
+        headers: {
+          Authorization: resetToken,
+        },
+      }),
+    }),
   }),
 });
 
@@ -50,4 +60,5 @@ export const {
   useGetAllUSersQuery,
   useForgotPasswordMutation,
   useVerifyEmailMutation,
+  useResetPassMutation,
 } = extendedAuthSlice;

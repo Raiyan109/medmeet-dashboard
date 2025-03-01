@@ -44,7 +44,7 @@ const VerifyEmail = () => {
 
       const response = await verifyEmail(verificationData).unwrap();
       if (response?.success) {
-        localStorageUtil.setItem("resetPassToken", response?.data?.data);
+        localStorageUtil.setItem("resetPassToken", response?.data);
         toast.success("Email verified successfully!");
         localStorageUtil.removeItem("rpev");
         localStorageUtil.setItem("rpev", true);
