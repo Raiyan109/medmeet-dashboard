@@ -1,6 +1,6 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo-nobackground.png";
-import logout from "../../assets/images/logout.png";
+import logoutImage from "../../assets/images/logout.png";
 import { createElement, useEffect, useState } from "react";
 import { routeLinkGenerators } from "../../utils/routeLinkGenerators";
 import { dashboardItems } from "../../constants/router.constants";
@@ -8,11 +8,14 @@ import Swal from "sweetalert2";
 import { FiLogOut } from "react-icons/fi";
 import { MdOutlineArrowRight } from "react-icons/md";
 import { cn } from "../../lib/utils";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/user/userSlice";
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [openNome, setOpenNome] = useState({});
+  const dispatch = useDispatch();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -28,6 +31,9 @@ const Sidebar = () => {
         // dispatch(logout());
         // localStorage.removeItem("token");
         // localStorage.removeItem("user-update");
+
+        dispatch(logout());
+
         navigate("/auth");
       }
     });
@@ -40,12 +46,16 @@ const Sidebar = () => {
       <div className="h-full flex flex-col justify-between  pt-[20px] drop-shadow">
         <div className="space-y-[24px]">
           <div className="px-[38px]">
-            <img className="w-[155px] h-[126] object-contain mx-auto" src={logo} alt="" />
+            <img
+              className="w-[155px] h-[126] object-contain mx-auto"
+              src={logo}
+              alt=""
+            />
           </div>
           <ul className="mt-10 max-h-[650px] overflow-y-auto space-y-1 xl:space-y-[16px] px-[24px]">
             {routeLinkGenerators(dashboardItems).map(
               ({ name, icon, path, children, rootPath }, indx) =>
-                children?.length ? null
+                children?.length ? null : (
                   // (
                   //     <li key={indx} className="overflow-hidden">
                   //       <button
@@ -107,31 +117,30 @@ const Sidebar = () => {
                   //         ))}
                   //       </div>
                   //     </li>
-                  //   ) 
-                  : (
-                    <li
-                      onClick={() => {
-                        setOpenNome((c) => ({
-                          name: c?.name === name ? null : name,
-                        }));
-                      }}
-                      key={indx}
-                    >
-                      <NavLink
-                        to={path}
-                        className={({ isActive }) =>
-                          isActive
-                            ? "bg-gray text-black" +
+                  //   )
+                  <li
+                    onClick={() => {
+                      setOpenNome((c) => ({
+                        name: c?.name === name ? null : name,
+                      }));
+                    }}
+                    key={indx}
+                  >
+                    <NavLink
+                      to={path}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "bg-gray text-black" +
                             " w-full px-4 py-3 flex items-center justify-start gap-3 text-[18px] transition-all rounded-[8px]"
-                            : " hover:text-black  hover:bg-gray" +
+                          : " hover:text-black  hover:bg-gray" +
                             " w-full px-4 py-3 flex items-center justify-start gap-3 text-[18px] transition-all rounded-[8px] bg-[#545454] text-gray"
-                        }
-                      >
-                        <div>{createElement(icon, { size: "18" })}</div>
-                        <span> {name}</span>
-                      </NavLink>
-                    </li>
-                  )
+                      }
+                    >
+                      <div>{createElement(icon, { size: "18" })}</div>
+                      <span> {name}</span>
+                    </NavLink>
+                  </li>
+                )
             )}
           </ul>
         </div>
@@ -141,7 +150,7 @@ const Sidebar = () => {
             onClick={handleLogOut}
             className=" w-full bg-white text-black  font-semibold px-5 py-3 flex items-center  gap-3 text-md outline-none rounded-[8px]"
           >
-            <img className="" src={logout} alt="" />
+            <img className="" src={logoutImage} alt="" />
             <span className="text-red font-light">Logout</span>
           </button>
         </div>

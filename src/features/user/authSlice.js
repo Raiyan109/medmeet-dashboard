@@ -28,7 +28,18 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
         return response;
       },
     }),
+    forgotPassword: builder.mutation({
+      query: (uniqueId) => ({
+        url: "/user/forgot-password",
+        method: "POST",
+        body: uniqueId,
+      }),
+    }),
   }),
 });
 
-export const { useLogInMutation, useGetAllUSersQuery } = extendedAuthSlice;
+export const {
+  useLogInMutation,
+  useGetAllUSersQuery,
+  useForgotPasswordMutation,
+} = extendedAuthSlice;

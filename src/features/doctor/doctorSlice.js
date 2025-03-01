@@ -2,8 +2,10 @@ import { apiSlice } from "../api/apiSlice";
 
 export const extendedDoctorSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getDoctors: builder.query({
-      query: {},
+    getAllDoctors: builder.query({
+      query: () => {},
     }),
   }),
 });
+
+export const { useGetAllDoctorsQuery } = extendedDoctorSlice;
