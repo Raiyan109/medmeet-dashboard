@@ -17,6 +17,7 @@ const Users = () => {
   const showModal = (data) => {
     setIsModalOpen(true);
     setModalData(data);
+    console.log(data);
   };
 
   // Columns for Table
@@ -138,7 +139,17 @@ const Users = () => {
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Date</p>
+            <p>Phone number</p>
+            <p>{modalData.phoneNumber || "N/A"}</p>
+          </div>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Country</p>
+            <p>{modalData.country || "N/A"}</p>
+          </div>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Joining date</p>
             <p>{modalData.date || "N/A"}</p>
           </div>
         </div>
