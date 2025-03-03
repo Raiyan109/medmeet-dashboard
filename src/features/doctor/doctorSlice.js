@@ -25,7 +25,7 @@ export const extendedDoctorSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: stats,
       }),
-      invalidatesTags: (result, error, arg) => [
+      invalidatesTags: (_result, _error, arg) => [
         { type: "DOCTOR", id: arg.doctorId },
         { type: "DOCTOR", id: "LIST" },
       ],
