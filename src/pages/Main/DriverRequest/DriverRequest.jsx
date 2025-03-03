@@ -106,7 +106,7 @@ const DriverRequest = () => {
 
         return (
           <div
-            className={` py-1 flex justify-center rounded-full font-semibold text-center ${bgColor} ${textColor}`}
+            className={`py-1 flex justify-center rounded-full font-semibold text-center ${bgColor} ${textColor}`}
           >
             {state}
           </div>

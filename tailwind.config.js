@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const { fontFamily } = require('tailwindcss/defaultTheme');
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -9,15 +9,15 @@ export default {
         primary: "#ffebff",
         playground: "#052255",
         black: "#333333",
-        red: "#F70300",
-        lightGray: '#B0B0B0',
-        lightBlueBg: '#F2F5F7',
-        gray: '#E8EBF0'
+        // red: "#F70300",
+        lightGray: "#B0B0B0",
+        lightBlueBg: "#F2F5F7",
+        gray: "#E8EBF0",
       },
       fontFamily: {
-        poppins: ['Poppins', ...fontFamily.sans],
-        roboto: ['Roboto', ...fontFamily.sans]
-      }
+        poppins: ["Poppins", ...fontFamily.sans],
+        roboto: ["Roboto", ...fontFamily.sans],
+      },
     },
   },
   plugins: [],

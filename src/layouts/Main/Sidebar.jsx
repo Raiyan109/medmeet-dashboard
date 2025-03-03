@@ -151,7 +151,7 @@ const Sidebar = () => {
             className=" w-full bg-white text-black  font-semibold px-5 py-3 flex items-center  gap-3 text-md outline-none rounded-[8px]"
           >
             <img className="" src={logoutImage} alt="" />
-            <span className="text-red font-light">Logout</span>
+            <span className="text-red-500 font-light">Logout</span>
           </button>
         </div>
       </div>
