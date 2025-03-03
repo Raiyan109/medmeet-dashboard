@@ -175,6 +175,21 @@ const Users = () => {
             <p>Email: </p>
             <p>{modalData.email || "N/A"}</p>
           </div>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Phone number: </p>
+            <p>{modalData.phoneNumber || "N/A"}</p>
+          </div>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Country: </p>
+            <p>{modalData.country || "N/A"}</p>
+          </div>
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Joining Date: </p>
+            <p>{modalData.date || "N/A"}</p>
+          </div>
         </div>
       </DashboardModal>
     </div>
