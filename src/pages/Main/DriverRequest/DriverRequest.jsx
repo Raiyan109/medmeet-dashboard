@@ -20,7 +20,7 @@ const DriverRequest = () => {
   const [modalData, setModalData] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  // const [filteredUsers, setFilteredUsers] = useState([]);
   const [showImageModal, setShowImageModal] = useState(false);
   const [modalImage, setModalImage] = useState(null);
 
@@ -213,21 +213,27 @@ const DriverRequest = () => {
         <div className="flex items-center gap-4 mb-6">
           {/* <DatePicker placeholder="Date" className="w-[164px] h-[36px] rounded-[86px] border-none outline-none" /> */}
           <Input
-            placeholder="User Name"
+            placeholder="Search doctor requests"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="w-[187px] h-[36px] rounded-[86px] border-none outline-none"
           />
 
-          <button
-            style={{
-              border: "none",
-              backgroundColor: "#545454",
-              color: "white",
-              borderRadius: "50%",
-              padding: "7px",
-            }}
-          >
-            <IoSearch size={20} />
-          </button>
+          {searchTerm && (
+            <button
+              onClick={() => setSearchTerm("")}
+              className="size-8 flex justify-center items-center"
+              style={{
+                border: "none",
+                backgroundColor: "#545454",
+                color: "white",
+                borderRadius: "50%",
+                padding: "7px",
+              }}
+            >
+              X
+            </button>
+          )}
         </div>
       </div>
       {/* Ant Design Table */}
