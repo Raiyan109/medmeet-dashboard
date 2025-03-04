@@ -15,14 +15,12 @@ const ResetPassword = () => {
   const resetPassToken = localStorageUtil.getItem("resetPassToken");
 
   const onFinish = async (values) => {
-    console.log(values);
     try {
       const response = await resetPassword({
         values,
         resetToken: resetPassToken,
       }).unwrap();
       if (response?.success) {
-        console.log(response);
         toast.success(response?.message || "Password reset successful!");
         localStorageUtil.removeItem("resetPassToken");
         localStorageUtil.removeItem("otpEmail");

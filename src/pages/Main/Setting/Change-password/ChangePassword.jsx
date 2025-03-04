@@ -28,7 +28,9 @@ const ChangePassword = () => {
       <div className="bg-white rounded-lg shadow-lg mt-8 w-[600px] h-[670px]">
         <div className="flex flex-col  w-full  py-[40px] px-[24px]">
           <div className="flex items-center gap-2 mb-[20px]">
-            <FaArrowLeft size={20} />
+            <button onClick={() => navigate(-1)}>
+              <FaArrowLeft size={20} />
+            </button>
             <h1 className="font-roboto text-[28px]">Set password</h1>
           </div>
           <h1 className="font-roboto text-[18px] text-[#545454]">

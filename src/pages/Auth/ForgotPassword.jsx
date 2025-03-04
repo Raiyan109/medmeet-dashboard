@@ -18,10 +18,6 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const evMessage = getItemWithExpiration("evMessage");
 
-  // const [emailForOtp, setEmailForOtp] = useState({
-  //   email: "",
-  // });
-
   const [sendEmail, { isLoading }] = useForgotPasswordMutation();
 
   const onFinish = async (values) => {
@@ -37,6 +33,7 @@ const ForgotPassword = () => {
       toast.error(error.message);
     }
   };
+
   return (
     <div className="bg-[#E8EBF0] w-[448px] h-[636px] rounded-[16px]">
       <div className="lg:p-[5%] order-first lg:order-last">
