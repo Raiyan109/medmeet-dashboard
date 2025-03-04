@@ -13,6 +13,7 @@ export default {
         lightGray: "#B0B0B0",
         lightBlueBg: "#F2F5F7",
         gray: "#E8EBF0",
+        "default-loading": "#272b28",
       },
       fontFamily: {
         poppins: ["Poppins", ...fontFamily.sans],

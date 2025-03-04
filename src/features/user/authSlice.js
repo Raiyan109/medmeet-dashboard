@@ -56,6 +56,13 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
         body: userData,
       }),
     }),
+    changePassword: builder.mutation({
+      query: (passData) => ({
+        url: "/user/change-password",
+        method: "POST",
+        body: passData,
+      }),
+    }),
   }),
 });
 
@@ -66,4 +73,5 @@ export const {
   useVerifyEmailMutation,
   useResetPassMutation,
   useUpadeProfileMutation,
+  useChangePasswordMutation,
 } = extendedAuthSlice;
