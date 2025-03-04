@@ -7,6 +7,7 @@ import localStorageUtil, {
 } from "../../../../utils/localstorageutils";
 import {
   useForgotPasswordMutation,
+  useResendOtpMutation,
   useVerifyEmailMutation,
 } from "../../../../features/user/authSlice";
 import LoadingSpinner from "../../../../Components/LoadingSpinner";
@@ -19,9 +20,21 @@ const ForgotPassword = () => {
   const [otp, setOtp] = useState("");
   const emailForOtpVerification = localStorageUtil.getItem("otpEmail");
   const [verifyEmail, { isLoading }] = useVerifyEmailMutation();
+  const [resendOtp, { isLoading: resendLoading }] = useResendOtpMutation();
 
-  const handleOtpChange = (text) => {
-    setOtp(text);
+  const handleResendOtp = async () => {
+    try {
+      const res = await resendOtp({
+        uniqueId: emailForOtpVerification?.value,
+      }).unwrap();
+
+      console.log(res);
+      if (res.success) {
+        toast.success(res.message);
+      }
+    } catch (error) {
+      console.log("Error during resend otp: ", error);
+    }
   };
 
   const onFinish = async (values) => {
@@ -106,7 +119,12 @@ const ForgotPassword = () => {
 
             <div className="flex justify-between">
               <p>Didn't receive the code?</p>
-              <p className="font-bold">Resend</p>
+              <p
+                onClick={handleResendOtp}
+                className="font-bold cursor-pointer hover:text-blue-500"
+              >
+                {resendLoading ? <LoadingSpinner size={4} /> : "Resend"}
+              </p>
             </div>
 
             <div className="w-full flex justify-center pt-5 mt-6">

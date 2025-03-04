@@ -63,6 +63,13 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
         body: passData,
       }),
     }),
+    resendOtp: builder.mutation({
+      query: (email) => ({
+        url: "/user/user-resend-otp",
+        method: "POST",
+        body: email,
+      }),
+    }),
   }),
 });
 
@@ -74,4 +81,5 @@ export const {
   useResetPassMutation,
   useUpadeProfileMutation,
   useChangePasswordMutation,
+  useResendOtpMutation,
 } = extendedAuthSlice;
