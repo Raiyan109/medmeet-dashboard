@@ -51,6 +51,8 @@ import Categories from "../pages/Main/Categories/Categories";
 import WithdrawRequest from "../pages/Main/WithdrawRequest/WithdrawRequest";
 import SetPercentage from "../pages/Settings/SetPercentage";
 import ResetPassword from "../pages/Main/Setting/Change-password/ResetPassword";
+import { GiMedicines } from "react-icons/gi";
+import ManageMedicine from "../pages/Main/Medicine/ManageMedicine";
 
 export const dashboardItems = [
   {
@@ -129,6 +131,12 @@ export const dashboardItems = [
     path: "withdrawal-request",
     icon: TbCoin,
     element: <WithdrawRequest />,
+  },
+  {
+    name: "Manage Medicine",
+    path: "manage-medicine",
+    icon: GiMedicines,
+    element: <ManageMedicine />,
   },
   {
     name: "Setting",

@@ -37,6 +37,7 @@ export const apiSlice = createApi({
     "APPOINTMENTS",
     "CATEGORIES",
     "SETTINGS",
+    "MEDICINES",
   ],
   // eslint-disable-next-line no-unused-vars
   endpoints: (builder) => ({
