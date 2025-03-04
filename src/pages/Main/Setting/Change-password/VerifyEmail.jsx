@@ -50,7 +50,7 @@ const ForgotPassword = () => {
         toast.success("Email verified successfully!");
         localStorageUtil.removeItem("rpev");
         localStorageUtil.setItem("rpev", true);
-        navigate("/auth/reset-password"); // Navigate to reset-password page on success
+        navigate("reset-pass"); // Navigate to reset-password page on success
       } else {
         toast.error(response?.message || "Verification failed.");
       }
@@ -104,7 +104,12 @@ const ForgotPassword = () => {
               </div>
             </Form.Item>
 
-            <div className="w-full flex justify-center pt-5">
+            <div className="flex justify-between">
+              <p>Didn't receive the code?</p>
+              <p className="font-bold">Resend</p>
+            </div>
+
+            <div className="w-full flex justify-center pt-5 mt-6">
               <Button
                 disabled={isLoading}
                 type="primary"
