@@ -30,7 +30,29 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ["DOCTOR", "USER", "DOCTOR_REQ", "APPOINTMENTS", "CATEGORIES"],
+  tagTypes: [
+    "DOCTOR",
+    "USER",
+    "DOCTOR_REQ",
+    "APPOINTMENTS",
+    "CATEGORIES",
+    "SETTINGS",
+  ],
   // eslint-disable-next-line no-unused-vars
-  endpoints: (builder) => ({}),
+  endpoints: (builder) => ({
+    getSettings: builder.query({
+      query: () => "/setting",
+      providesTags: ["SETTINGS"],
+    }),
+    updateSettings: builder.mutation({
+      query: (data) => ({
+        url: "/setting/update-setting",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["SETTINGS"],
+    }),
+  }),
 });
+
+export const { useGetSettingsQuery, useUpdateSettingsMutation } = apiSlice;
