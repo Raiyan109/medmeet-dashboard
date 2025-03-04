@@ -48,7 +48,7 @@ const SignIn = () => {
           <div className="flex items-center justify-center pt-[34px]">
             <img
               src={logo}
-              alt=""
+              alt="logo"
               className="w-[182px] h-[150px] object-contain"
             />
           </div>

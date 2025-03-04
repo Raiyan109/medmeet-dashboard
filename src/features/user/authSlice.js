@@ -49,6 +49,13 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    upadeProfile: builder.mutation({
+      query: (userData) => ({
+        url: "/user/update-profile",
+        method: "POST",
+        body: userData,
+      }),
+    }),
   }),
 });
 
@@ -58,4 +65,5 @@ export const {
   useForgotPasswordMutation,
   useVerifyEmailMutation,
   useResetPassMutation,
+  useUpadeProfileMutation,
 } = extendedAuthSlice;

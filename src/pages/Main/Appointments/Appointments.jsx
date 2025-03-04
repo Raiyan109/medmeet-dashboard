@@ -10,6 +10,7 @@ import { useGetAllAppointmentsQuery } from "../../../features/appointment/appoin
 import dayjs from "dayjs"; // For date formatting
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const Appointments = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +25,7 @@ const Appointments = () => {
   // Debounce effect: updates `debouncedSearchTerm` only after user stops typing
   useEffect(() => {
     const handler = setTimeout(() => {
+      console.log(searchTerm);
       setDebouncedSearchTerm(searchTerm);
     }, 500); // 500ms debounce time
 
@@ -37,20 +39,10 @@ const Appointments = () => {
     data: res,
     isLoading,
     isError,
-  } = useGetAllAppointmentsQuery(debouncedSearchTerm);
-
-  // Filter users by selected date
-  useEffect(() => {
-    if (selectedDate && res?.data) {
-      const formattedDate = dayjs(selectedDate).format("DD MMM YYYY"); // Format date
-      const filtered = res.data.filter(
-        (user) => dayjs(user.createdAt).format("DD MMM YYYY") === formattedDate
-      );
-      setFilteredUsers(filtered);
-    } else {
-      setFilteredUsers(res?.data || []);
-    }
-  }, [selectedDate, res]);
+  } = useGetAllAppointmentsQuery({
+    name: debouncedSearchTerm,
+    date: selectedDate ? dayjs(selectedDate).format("DD-MM-YYYY") : "",
+  });
 
   const showModal = (data) => {
     setIsModalOpen(true);
@@ -103,7 +95,7 @@ const Appointments = () => {
   ];
 
   const dataSource =
-    filteredUsers?.map((appot, index) => ({
+    res?.data?.map((appot, index) => ({
       transIs: index + 1,
       username: appot.user?.name || "N/A",
       doctorName: appot?.doctor?.name || "N/A",
@@ -134,6 +126,21 @@ const Appointments = () => {
       }
     });
   };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="flex justify-center">
+        <LoadingSpinner size={12} color="stroke-[#272b28]" />
+      </div>
+    );
+  }
+
+  // Error state
+  if (isError) {
+    return <p className="text-red-500">Something went wrong!</p>;
+  }
+
   return (
     <div className="rounded-lg bg-[#DDE3E6] mt-8 recent-users-table py-[20px]">
       <div className="flex justify-between px-2">
@@ -142,18 +149,12 @@ const Appointments = () => {
         </h3>
         <div className="flex items-center gap-4 mb-6">
           <DatePicker
-            placeholder="Date"
+            placeholder="Filter by Date"
+            onChange={(date) => setSelectedDate(date)}
             className="w-[164px] h-[36px] rounded-[86px] border-none outline-none"
           />
           <Input
-            placeholder="Search User"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-[187px] h-[36px] rounded-[86px] border-none outline-none"
-          />
-
-          <Input
-            placeholder="Search User"
+            placeholder="Search Appointments"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-[187px] h-[36px] rounded-[86px] border-none outline-none"
@@ -239,7 +240,7 @@ const Appointments = () => {
 
           {/* Buttons */}
           <div className="flex items-center justify-center gap-[12px] mx-2 mt-4">
-            <div
+            <button
               onClick={() => generatePDF(true)}
               className="border border-[#545454] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px]"
             >
@@ -247,13 +248,13 @@ const Appointments = () => {
               <h2 className="font-roboto text-[18px] text-[#333333]">
                 Download
               </h2>
-            </div>
-            <div
+            </button>
+            <button
               onClick={() => generatePDF(false)}
               className="bg-[#90A4AE] w-[200px] h-[48px] rounded-[29px] flex items-center justify-center gap-[10px] font-roboto text-white text-[18px]"
             >
               Print
-            </div>
+            </button>
           </div>
         </div>
       </DashboardModal>

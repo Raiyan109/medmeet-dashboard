@@ -4,9 +4,9 @@ export const extendedAppointmentSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllAppointments: builder.query({
       query: (searchTerm) =>
-        `/appointment?userName=${searchTerm.userName || ""}&doctorName=${
-          searchTerm.doctorName || ""
-        }&date=${searchTerm.date || ""}`,
+        `/appointment?name=${searchTerm.name || ""}&date=${
+          searchTerm.date || ""
+        }`,
       providesTags: (result) => {
         if (result?.data) {
           const appos = result.data;

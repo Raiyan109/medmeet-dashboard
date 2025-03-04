@@ -115,7 +115,7 @@ const Doctor = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center">
-        <LoadingSpinner size={12} color="stroke-primary" />
+        <LoadingSpinner size={12} color="stroke-[#272b28]" />
       </div>
     );
   }
