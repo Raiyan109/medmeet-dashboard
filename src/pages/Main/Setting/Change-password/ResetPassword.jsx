@@ -7,6 +7,7 @@ import { useResetPassMutation } from "../../../../features/user/authSlice";
 import localStorageUtil from "../../../../utils/localstorageutils";
 import PageHeading from "../../../../Components/PageHeading";
 import LoadingSpinner from "../../../../Components/LoadingSpinner";
+import { FaArrowLeft } from "react-icons/fa6";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ResetPassword = () => {
         localStorageUtil.removeItem("resetPassToken");
         localStorageUtil.removeItem("otpEmail");
         localStorageUtil.removeItem("rpev");
-        navigate("/auth/sign-in");
+        navigate("/settings");
       }
     } catch (error) {
       console.log(error);
@@ -33,118 +34,124 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="flex justify-center mt-14">
-      <div className="bg-[#E8EBF0] w-[448px] rounded-[16px]">
-        <div className="lg:p-[5%] order-first lg:order-last">
-          <div className="w-full py-[44px] px-[51.5px]">
-            <div className="flex flex-col items-center">
-              <PageHeading
-                backPath={-1}
-                title={"Reset password"}
-                disbaledBackBtn={false}
-              />
-              <p className="text-center font-roboto text-[14px] leading-[16.41px] text-[#5C5C5C] pt-[24px] max-w-sm lg:max-w-lg">
-                Your password must be 8-10 character long.
-              </p>
-            </div>
-            <Form
-              name="normal_login"
-              layout="vertical"
-              initialValues={{
-                remember: true,
-              }}
-              requiredMark={false}
-              onFinish={onFinish}
-              className="text-start"
-            >
-              <Form.Item
-                label={
-                  <span className="font-roboto text-[14px] text-black/90">
-                    Password
-                  </span>
-                }
-                name="newPassword"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input new password!",
-                  },
-                ]}
-              >
-                <Input.Password
-                  size="large"
-                  placeholder="**********"
-                  style={{
-                    width: "345px",
-                    height: "44px",
-                    borderRadius: "114px",
-                    border: "1px solid #DDDEE0",
-                    background: "transparent",
-                    paddingLeft: "12px",
-                  }}
-                />
-              </Form.Item>
-              <Form.Item
-                label={
-                  <span className="font-roboto text-[14px] text-black/90">
-                    Confirm New Password
-                  </span>
-                }
-                name="confirmPassword"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please Re-Enter the password!",
-                  },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("newPassword") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error(
-                          "The new password that you entered do not match!"
-                        )
-                      );
-                    },
-                  }),
-                ]}
-              >
-                <Input.Password
-                  size="large"
-                  placeholder="**********"
-                  style={{
-                    width: "345px",
-                    height: "44px",
-                    borderRadius: "114px",
-                    border: "1px solid #DDDEE0",
-                    background: "transparent",
-                    paddingLeft: "12px",
-                  }}
-                />
-              </Form.Item>
-              <div className="w-full flex justify-center pt-4 ">
-                <Button
-                  // disabled={isLoading}
-                  type="primary"
-                  size="large"
-                  htmlType="submit"
-                  className="px-2 w-full bg-[#90A4AE]"
-                  style={{
-                    width: "345px",
-                    height: "48px",
-                    borderRadius: "50px",
-                  }}
-                >
-                  {isLoading ? (
-                    <LoadingSpinner color="stroke-[#2e332f]" size={5} />
-                  ) : (
-                    "Reset Password"
-                  )}
-                </Button>
-              </div>
-            </Form>
+    <div className="flex items-center justify-center">
+      <div className="bg-white rounded-lg shadow-lg mt-8 w-[600px] h-[470px]">
+        <div className="flex flex-col  w-full  py-[40px] px-[24px]">
+          <div className="flex items-center gap-2 mb-[20px]">
+            <button onClick={() => navigate(-1)}>
+              <FaArrowLeft size={20} />
+            </button>
+            <h1 className="font-roboto text-[28px]">Reset password</h1>
           </div>
+          <h1 className="font-roboto text-[18px] text-[#545454]">
+            Change your password
+          </h1>
+          <Form
+            name="normal_login"
+            layout="vertical"
+            initialValues={{
+              remember: true,
+            }}
+            requiredMark={false}
+            onFinish={onFinish}
+            className="text-start"
+          >
+            <Form.Item
+              label={
+                <span className="font-roboto text-[18px] text-black/90">
+                  Set New Password
+                </span>
+              }
+              className="mt-6"
+              name="newPassword"
+              dependencies={["currentPassword"]}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("currentPassword") !== value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error(
+                        "New password cannot be the same as the old password!"
+                      )
+                    );
+                  },
+                }),
+              ]}
+            >
+              <Input.Password
+                size="large"
+                placeholder="**********"
+                style={{
+                  width: "552px",
+                  height: "56px",
+                  borderRadius: "114px",
+                  border: "1px solid #DDDEE0",
+                  background: "transparent",
+                  paddingLeft: "12px",
+                }}
+              />
+            </Form.Item>
+
+            {/* Re-Enter New Password */}
+            <Form.Item
+              label={
+                <span className="font-roboto text-[18px] text-black/90">
+                  Re-Enter New Password
+                </span>
+              }
+              className="mt-6"
+              name="confirmPassword"
+              dependencies={["newPassword"]}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("newPassword") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error("Passwords do not match!"));
+                  },
+                }),
+              ]}
+            >
+              <Input.Password
+                size="large"
+                placeholder="**********"
+                style={{
+                  width: "552px",
+                  height: "56px",
+                  borderRadius: "114px",
+                  border: "1px solid #DDDEE0",
+                  background: "transparent",
+                  paddingLeft: "12px",
+                }}
+              />
+            </Form.Item>
+            <div className="w-full flex justify-center mt-6">
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                className="px-2 w-full bg-[#90A4AE] text-[20px] font-roboto"
+                style={{ height: "56px", borderRadius: "50px" }}
+              >
+                {isLoading ? (
+                  <LoadingSpinner color="stroke-[#2e332f]" size={5} />
+                ) : (
+                  "Send OTP"
+                )}
+              </Button>
+            </div>
+          </Form>
         </div>
       </div>
     </div>
