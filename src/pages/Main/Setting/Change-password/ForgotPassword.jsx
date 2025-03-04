@@ -18,7 +18,6 @@ const ForgotPassword = () => {
   const onFinish = async (values) => {
     try {
       const res = await sendEmail(values).unwrap();
-      console.log(res);
       if (res?.success) {
         toast.success(res?.message);
         setItemWithExpiration("otpEmail", values?.uniqueId, 2);
