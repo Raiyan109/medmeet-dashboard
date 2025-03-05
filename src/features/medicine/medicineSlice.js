@@ -54,6 +54,19 @@ export const extendedMedicineSlice = apiSlice.injectEndpoints({
         return [{ type: "MEDICINES", id: "LIST" }];
       },
     }),
+    updateMedicine: builder.mutation({
+      query: ({ data, mediId }) => ({
+        url: `/medicine/update-medicine/${mediId}`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: (result, error, arg) => {
+        return [
+          { type: "MEDICINES", id: arg.mediId },
+          { type: "MEDICINES", id: "LIST" },
+        ];
+      },
+    }),
   }),
 });
 
@@ -61,4 +74,5 @@ export const {
   useGetAllMedicinesQuery,
   useCreateMedicineMutation,
   useDeleteMedicineMutation,
+  useUpdateMedicineMutation,
 } = extendedMedicineSlice;

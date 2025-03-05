@@ -6,6 +6,7 @@ import {
   useCreateMedicineMutation,
   useDeleteMedicineMutation,
   useGetAllMedicinesQuery,
+  useUpdateMedicineMutation,
 } from "../../../features/medicine/medicineSlice";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import DashboardModal from "../../../Components/DashboardModal";
@@ -19,13 +20,15 @@ const ManageMedicine = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [form] = Form.useForm();
-  const [deleteId, setDeleteId] = useState(null);
+  const [actionId, setActionId] = useState(null);
 
   // Fetch medicines
   const { data: res, isLoading, isError } = useGetAllMedicinesQuery();
   const [addMedicine, { isLoading: createLoading }] =
     useCreateMedicineMutation();
   const [deleteMedicine] = useDeleteMedicineMutation();
+  const [updateMedicine, { isLoading: updateLoading }] =
+    useUpdateMedicineMutation();
 
   // Show modal for Add/Edit medicine
   const showModal = (medicine = null) => {
@@ -52,7 +55,7 @@ const ManageMedicine = () => {
         reverseButtons: true,
       }).then(async (res) => {
         if (res.isConfirmed) {
-          setDeleteId(medicineId);
+          setActionId(medicineId);
           toast.promise(deleteMedicine(medicineId).unwrap(), {
             loading: "Deleting medicine...",
             success: "Medicine deleted successfully!",
@@ -84,7 +87,7 @@ const ManageMedicine = () => {
       align: "center",
       render: (_, medicine) => (
         <div className="flex items-center justify-center gap-4">
-          {deleteId === medicine._id ? (
+          {actionId === medicine._id ? (
             <LoadingSpinner size={5} />
           ) : (
             <>
@@ -121,9 +124,11 @@ const ManageMedicine = () => {
     try {
       if (modalData) {
         // Update medicine
-        await updateCategory({
-          _id: modalData._id,
-          name: values.name,
+        await updateMedicine({
+          data: {
+            name: values.name,
+          },
+          mediId: modalData._id,
         }).unwrap();
         toast.success("Medicine updated successfully");
       } else {
@@ -178,8 +183,8 @@ const ManageMedicine = () => {
         setIsModalOpen={setIsModalOpen}
         maxWidth="400px"
       >
-        <div className="h-[400px]">
-          <div className="flex items-center gap-[8px] pt-[24px] pl-[28px]">
+        <div className="h-[300px]">
+          <div className="flex items-center gap-[8px] pt-[24px] pl-[28px] mb-6">
             <GoArrowLeft size={30} />
             <h1 className="font-poppins text-[24px]">
               {modalData ? "Edit Medicine" : "Add New Medicine"}
@@ -218,7 +223,7 @@ const ManageMedicine = () => {
                 size="large"
                 type="primary"
                 htmlType="submit"
-                loading={createLoading}
+                loading={createLoading || updateLoading}
                 block
                 className="px-2 w-full bg-[#90A4AE]"
               >
