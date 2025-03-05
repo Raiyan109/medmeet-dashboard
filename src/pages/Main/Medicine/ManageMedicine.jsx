@@ -4,6 +4,7 @@ import { GoArrowLeft } from "react-icons/go";
 import { Button, Form, Input, Table } from "antd";
 import {
   useCreateMedicineMutation,
+  useDeleteMedicineMutation,
   useGetAllMedicinesQuery,
 } from "../../../features/medicine/medicineSlice";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
@@ -18,11 +19,13 @@ const ManageMedicine = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
   const [form] = Form.useForm();
+  const [deleteId, setDeleteId] = useState(null);
 
   // Fetch medicines
-  const { data: res, isLoading, isError } = useGetAllMedicinesQuery("");
+  const { data: res, isLoading, isError } = useGetAllMedicinesQuery();
   const [addMedicine, { isLoading: createLoading }] =
     useCreateMedicineMutation();
+  const [deleteMedicine] = useDeleteMedicineMutation();
 
   // Show modal for Add/Edit medicine
   const showModal = (medicine = null) => {
@@ -33,6 +36,33 @@ const ManageMedicine = () => {
       form.setFieldsValue({ name: medicine.name });
     } else {
       form.resetFields();
+    }
+  };
+
+  // Handle Delete
+  const handleDelete = async (medicineId) => {
+    try {
+      Swal.fire({
+        text: "Are you sure you want to delete this medicine?",
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel",
+        showConfirmButton: true,
+        confirmButtonColor: "#DC2626",
+        reverseButtons: true,
+      }).then(async (res) => {
+        if (res.isConfirmed) {
+          setDeleteId(medicineId);
+          toast.promise(deleteMedicine(medicineId).unwrap(), {
+            loading: "Deleting medicine...",
+            success: "Medicine deleted successfully!",
+            error: "Failed to delete medicine!",
+          });
+        }
+      });
+    } catch (error) {
+      toast.error("Something went wrong while deleting the medicine.");
+      console.error("Error deleting medicine:", error);
     }
   };
 
@@ -54,16 +84,22 @@ const ManageMedicine = () => {
       align: "center",
       render: (_, medicine) => (
         <div className="flex items-center justify-center gap-4">
-          <FiEdit
-            className="text-zinc-600 cursor-pointer"
-            size={18}
-            onClick={() => showModal(medicine)}
-          />
-          <RiDeleteBinLine
-            className="text-red-500 cursor-pointer"
-            size={20}
-            onClick={() => handleDelete(medicine._id)}
-          />
+          {deleteId === medicine._id ? (
+            <LoadingSpinner size={5} />
+          ) : (
+            <>
+              <FiEdit
+                className="text-zinc-600 cursor-pointer"
+                size={18}
+                onClick={() => showModal(medicine)}
+              />
+              <RiDeleteBinLine
+                className="text-red-500 cursor-pointer"
+                size={20}
+                onClick={() => handleDelete(medicine._id)}
+              />
+            </>
+          )}
         </div>
       ),
     },
@@ -79,32 +115,6 @@ const ManageMedicine = () => {
         : "N/A",
       ...medicine, // Pass full medicine object for modal display
     })) || [];
-
-  // Handle Delete
-  const handleDelete = async (medicineId) => {
-    try {
-      Swal.fire({
-        text: "Are you sure you want to delete this medicine?",
-        showCancelButton: true,
-        confirmButtonText: "Delete",
-        cancelButtonText: "Cancel",
-        showConfirmButton: true,
-        confirmButtonColor: "#DC2626",
-        reverseButtons: true,
-      }).then(async (res) => {
-        if (res.isConfirmed) {
-          toast.promise(deleteCategory(medicineId).unwrap(), {
-            loading: "Deleting medicine...",
-            success: "Medicine deleted successfully!",
-            error: "Failed to delete medicine!",
-          });
-        }
-      });
-    } catch (error) {
-      toast.error("Something went wrong while deleting the medicine.");
-      console.error("Error deleting medicine:", error);
-    }
-  };
 
   // Handle Form Submission (Create/Update)
   const onFinish = async (values) => {
