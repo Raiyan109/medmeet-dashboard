@@ -48,7 +48,7 @@ const SignIn = () => {
           <div className="flex items-center justify-center pt-[34px]">
             <img
               src={logo}
-              alt=""
+              alt="logo"
               className="w-[182px] h-[150px] object-contain"
             />
           </div>
@@ -131,25 +131,18 @@ const SignIn = () => {
 
             {/* Checkbox */}
             <div className="flex justify-between items-center">
-              <Form.Item name="remember" valuePropName="checked">
+              {/* <Form.Item name="remember" valuePropName="checked">
                 <Checkbox className="font-poppins text-[#545454] text-[16px]">
                   Remember me
                 </Checkbox>
-              </Form.Item>
+              </Form.Item> */}
               <Form.Item>
-                <button
+                <p
                   className="text-[16px] text-[#333333] font-poppins"
                   onClick={() => navigate("/auth/forgot-password")}
                 >
                   Forget password?
-                </button>
-                {/* <Button
-                  onClick={() => navigate("/auth/forgot-password")}
-                  type="link"
-                  className="text-[16px] text-[#333333] font-poppins"
-                >
-                  Forget password?
-                </Button> */}
+                </p>
               </Form.Item>
             </div>
             <div className="w-full flex justify-center ">

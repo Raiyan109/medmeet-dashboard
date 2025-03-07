@@ -1,14 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, DatePicker, Input, Table } from "antd";
-import { FiAlertCircle } from "react-icons/fi";
 import DashboardModal from "../../../Components/DashboardModal";
 import { IoSearch } from "react-icons/io5";
-import { Link } from "react-router-dom";
 import exlamIcon from "../../../assets/images/exclamation-circle.png";
+import { useGetAllDoctorsQuery } from "../../../features/doctor/doctorSlice";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const Doctor = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
+  // Debounce effect: updates `debouncedSearchTerm` only after user stops typing
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 500); // 500ms debounce time
+
+    return () => {
+      clearTimeout(handler); // Clear timeout if user types again before 500ms
+    };
+  }, [searchTerm]);
+
+  const {
+    data: res,
+    isLoading,
+    isError,
+  } = useGetAllDoctorsQuery({
+    searchTerm: debouncedSearchTerm,
+    status: "approved",
+  });
+
+  // Filter users by selected date
+  useEffect(() => {
+    if (selectedDate && res?.data) {
+      const formattedDate = dayjs(selectedDate).format("DD MMM YYYY"); // Format date
+      const filtered = res.data.filter(
+        (user) => dayjs(user.createdAt).format("DD MMM YYYY") === formattedDate
+      );
+      setFilteredUsers(filtered);
+    } else {
+      setFilteredUsers(res?.data || []);
+    }
+  }, [selectedDate, res]);
 
   const showModal = (data) => {
     setIsModalOpen(true);
@@ -17,9 +54,9 @@ const Doctor = () => {
 
   const columns = [
     {
-      title: "#SL",
-      dataIndex: "transIs",
-      key: "transIs",
+      title: "#Dr. Id",
+      dataIndex: "drId",
+      key: "drId",
       render: (text) => <a>{text}</a>,
     },
     {
@@ -28,23 +65,33 @@ const Doctor = () => {
       key: "name",
     },
     {
-      title: "Email",
-      dataIndex: "Email",
-      key: "Email",
+      title: "Doctor Email",
+      dataIndex: "email",
+      key: "email",
     },
     {
       title: "Phone Number",
-      key: "Phone",
-      dataIndex: "Phone",
+      key: "phone",
+      dataIndex: "phone",
+    },
+    {
+      title: "Specialized In",
+      key: "specialized_in",
+      dataIndex: "specialized_in",
     },
     {
       title: "Action",
       key: "Review",
-      aligen: 'center',
+      aligen: "center",
       render: (_, data) => (
-        <div className="  items-center justify-around textcenter flex " >
+        <div className="  items-center justify-around textcenter flex ">
           {/* Review Icon */}
-          <img src={exlamIcon} alt="" className="btn  px-3 py-1 text-sm rounded-full cursor-pointer" onClick={() => showModal(data)} />
+          <img
+            src={exlamIcon}
+            alt=""
+            className="btn  px-3 py-1 text-sm rounded-full cursor-pointer"
+            onClick={() => showModal(data)}
+          />
           {/* <Link to={'/reviews'} className="btn bg-black text-white px-3 py-1 text-sm rounded-full">
                  
                   View
@@ -54,33 +101,70 @@ const Doctor = () => {
     },
   ];
 
-  const data = [];
-  for (let index = 0; index < 20; index++) {
-    data.push({
-      transIs: `${index + 1}`,
-      name: "Henry",
-      Email: "sharif@gmail.com",
-      Phone: "+12746478994",
-      Review: "See Review",
-      date: "16 Apr 2024",
-      _id: index,
-    });
+  const dataSource =
+    filteredUsers?.map((user, index) => ({
+      drId: user.doctorId || index,
+      username: user.name || "N/A",
+      email: user.email || "N/A",
+      phone: user.phoneNumber || "N/A",
+      specialized_in: user.specialist?.name || "N/A",
+      ...user, // Pass full user object for modal display
+    })) || [];
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="flex justify-center">
+        <LoadingSpinner size={12} color="stroke-[#272b28]" />
+      </div>
+    );
   }
+
+  // Error state
+  if (isError) {
+    return <p className="text-red-500">Something went wrong!</p>;
+  }
+
   return (
     <div className="rounded-lg bg-[#DDE3E6] mt-8 recent-users-table py-[20px]">
       <div className="flex justify-between px-2">
-        <h3 className="text-[20px] font-poppins text-[#333333] pl-[20px]">Doctor List</h3>
+        <h3 className="text-[20px] font-poppins text-[#333333] pl-[20px]">
+          Doctor List
+        </h3>
         <div className="flex items-center gap-4 mb-6">
-          <DatePicker placeholder="Date" className="w-[164px] h-[36px] rounded-[86px] border-none outline-none" />
-          <Input placeholder="User Name" className="w-[187px] h-[36px] rounded-[86px] border-none outline-none" />
+          {/* <DatePicker
+            placeholder="Filter by Date"
+            onChange={(date) => setSelectedDate(date)}
+            className="w-[164px] h-[36px] rounded-[86px] border-none outline-none"
+          /> */}
+          <Input
+            placeholder="Search Doctor"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-[187px] h-[36px] rounded-[86px] border-none outline-none"
+          />
 
-          <button style={{ border: 'none', backgroundColor: '#545454', color: 'white', borderRadius: '50%', padding: '7px' }}><IoSearch size={20} /></button>
+          {searchTerm && (
+            <button
+              onClick={() => setSearchTerm("")}
+              className="size-8 flex justify-center items-center"
+              style={{
+                border: "none",
+                backgroundColor: "#545454",
+                color: "white",
+                borderRadius: "50%",
+                padding: "7px",
+              }}
+            >
+              X
+            </button>
+          )}
         </div>
       </div>
       {/* Ant Design Table */}
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={dataSource}
         pagination={{ position: ["bottomCenter"] }}
         className="rounded-lg"
       />
@@ -90,44 +174,42 @@ const Doctor = () => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         maxWidth="400px"
-      // backgroundColor={'#E8EBF0'}
+        // backgroundColor={'#E8EBF0'}
       >
         <div className="py-[24px] font-roboto">
-          <h2 className="text-[18px] text-center mb-4 font-roboto">User Details</h2>
+          <h2 className="text-[18px] text-center mb-4 font-roboto">
+            User Details
+          </h2>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600 px-[16px] py-[20px]">
-            <p className="text-[14px] ">User Name: </p>
-            <p>{modalData.username}</p>
+            <p className="text-[14px] ">Doctor Name </p>
+            <p>{modalData.username || "N/A"}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
             <p>Email</p>
-            <p>{modalData.email}</p>
+            <p>{modalData.email || "N/A"}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>User name:</p>
-            <p>{modalData.username}</p>
+            <p>Phone Number</p>
+            <p>{modalData.phoneNumber || "N/A"}</p>
+          </div>
+
+          <div className="border-b border-[#B8C1CF] w-full"></div>
+          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
+            <p>Specialized In</p>
+            <p>{modalData.specialized_in || "N/A"}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>A/C number:</p>
-            <p>{modalData.Phone}</p>
+            <p>Experience</p>
+            <p>{modalData.experience || "N/A"}</p>
           </div>
           <div className="border-b border-[#B8C1CF] w-full"></div>
           <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>A/C holder name</p>
-            <p>{modalData.transIs}</p>
-          </div>
-          <div className="border-b border-[#B8C1CF] w-full"></div>
-          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Transaction amount</p>
-            <p>{modalData.transIs}</p>
-          </div>
-          <div className="border-b border-[#B8C1CF] w-full"></div>
-          <div className="flex justify-between mb-2 text-gray-600  px-[16px] py-[20px]">
-            <p>Doctor name</p>
-            <p>{modalData.transIs}</p>
+            <p>Clinic Address</p>
+            <p>{modalData.clinicAddress || "N/A"}</p>
           </div>
 
           {/* Buttons */}
@@ -143,7 +225,7 @@ const Doctor = () => {
         </div>
       </DashboardModal>
     </div>
-  )
-}
+  );
+};
 
-export default Doctor
+export default Doctor;

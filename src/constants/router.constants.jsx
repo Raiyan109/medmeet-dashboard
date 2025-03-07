@@ -50,6 +50,9 @@ import Appointments from "../pages/Main/Appointments/Appointments";
 import Categories from "../pages/Main/Categories/Categories";
 import WithdrawRequest from "../pages/Main/WithdrawRequest/WithdrawRequest";
 import SetPercentage from "../pages/Settings/SetPercentage";
+import ResetPassword from "../pages/Main/Setting/Change-password/ResetPassword";
+import { GiMedicines } from "react-icons/gi";
+import ManageMedicine from "../pages/Main/Medicine/ManageMedicine";
 
 export const dashboardItems = [
   {
@@ -130,6 +133,12 @@ export const dashboardItems = [
     element: <WithdrawRequest />,
   },
   {
+    name: "Manage Medicine",
+    path: "manage-medicine",
+    icon: GiMedicines,
+    element: <ManageMedicine />,
+  },
+  {
     name: "Setting",
     path: "settings",
     icon: IoSettingsOutline,
@@ -167,6 +176,10 @@ export const dashboardItems = [
       {
         path: "settings/change-password/forgot-password/verify-email",
         element: <VerifyEmail />,
+      },
+      {
+        path: "settings/change-password/forgot-password/verify-email/reset-pass",
+        element: <ResetPassword />,
       },
       {
         name: "Set Percentage for transaction",

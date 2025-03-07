@@ -5,12 +5,9 @@ const token = localStorageUtil.getItem("token");
 
 export const extendedAuthSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllUSers: builder.query({
-      query: () => ({
-        url: "/user",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    getAllUsers: builder.query({
+      query: (searchTerms) => ({
+        url: `/user?searchTerm=${searchTerms || ""}`,
       }),
       providesTags: ["USER"],
     }),
@@ -28,7 +25,61 @@ export const extendedAuthSlice = apiSlice.injectEndpoints({
         return response;
       },
     }),
+    forgotPassword: builder.mutation({
+      query: (uniqueId) => ({
+        url: "/user/forgot-password",
+        method: "POST",
+        body: uniqueId,
+      }),
+    }),
+    verifyEmail: builder.mutation({
+      query: (data) => ({
+        url: "user/verify-email",
+        body: data,
+        method: "POST",
+      }),
+    }),
+    resetPass: builder.mutation({
+      query: ({ values, resetToken }) => ({
+        url: "/user/reset-password",
+        body: values,
+        method: "POST",
+        headers: {
+          Authorization: resetToken,
+        },
+      }),
+    }),
+    upadeProfile: builder.mutation({
+      query: (userData) => ({
+        url: "/user/update-profile",
+        method: "POST",
+        body: userData,
+      }),
+    }),
+    changePassword: builder.mutation({
+      query: (passData) => ({
+        url: "/user/change-password",
+        method: "POST",
+        body: passData,
+      }),
+    }),
+    resendOtp: builder.mutation({
+      query: (email) => ({
+        url: "/user/user-resend-otp",
+        method: "POST",
+        body: email,
+      }),
+    }),
   }),
 });
 
-export const { useLogInMutation, useGetAllUSersQuery } = extendedAuthSlice;
+export const {
+  useLogInMutation,
+  useGetAllUsersQuery,
+  useForgotPasswordMutation,
+  useVerifyEmailMutation,
+  useResetPassMutation,
+  useUpadeProfileMutation,
+  useChangePasswordMutation,
+  useResendOtpMutation,
+} = extendedAuthSlice;

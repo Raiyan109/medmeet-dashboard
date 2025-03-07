@@ -20,10 +20,13 @@ const Main = () => {
         <Sidebar />
       </div>
       <div className="flex-1 pl-[370px] bg-[#F2F5F7]">
-        <div className={`w-full z-10 transition-all ${isScrolled
-          ? "sticky top-0 bg-[#DDE3E6] p-0"
-          : "sticky top-0 bg-transparent p-[17px]"
-          }`}>
+        <div
+          className={`w-full z-10 transition-all ${
+            isScrolled
+              ? "sticky top-0 bg-[#DDE3E6] p-0"
+              : "sticky top-0 bg-transparent p-[17px]"
+          }`}
+        >
           <Header />
         </div>
         <div className="p-[24px]">

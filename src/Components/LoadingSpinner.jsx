@@ -2,7 +2,7 @@
 
 export default function LoadingSpinner({
   size = 12,
-  color = "stroke-gray-500",
+  color = "stroke-zinc-500",
 }) {
   return (
     <div aria-label="Loading..." role="status">

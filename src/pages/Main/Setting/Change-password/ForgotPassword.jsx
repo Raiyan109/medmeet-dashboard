@@ -1,46 +1,105 @@
-import { FaArrowLeft, FaRegEyeSlash } from "react-icons/fa6"
-import { MdLockOutline } from "react-icons/md"
-import { LuMailOpen } from "react-icons/lu";
+import { FaArrowLeft, FaRegEyeSlash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-
+import { Button, Form, Input } from "antd";
+import {
+  getItemWithExpiration,
+  setItemWithExpiration,
+} from "../../../../utils/localstorageutils";
+import { useForgotPasswordMutation } from "../../../../features/user/authSlice";
+import LoadingSpinner from "../../../../Components/LoadingSpinner";
+import toast from "react-hot-toast";
 
 const ForgotPassword = () => {
-    const navigate = useNavigate();
-    return (
-        <div className="flex items-center justify-center ">
-            <div className="bg-white rounded-lg shadow-lg mt-8 w-[610px] h-[468px] mx-auto py-10 px-8">
-                <div className="flex flex-col  w-full max-w-md mx-auto mt-10 p-4 rounded-lg space-y-4">
-                    <div className="flex items-center gap-2">
-                        <FaArrowLeft />
-                        <h1>Forgot password</h1>
-                    </div>
-                    <h1>Please enter your email address  to reset your password </h1>
-                    {/* Input Fields */}
-                    <div className="flex flex-col w-full space-y-4">
-                        <div>
-                            <h1 className="mb-3">Enter your email</h1>
-                            <div className="relative flex items-center">
-                                {/* Lock Icon */}
-                                <LuMailOpen className="absolute left-3 " />
-                                {/* Input Field */}
-                                <input
-                                    type="email"
-                                    placeholder='Enter your email'
-                                    className="w-full pl-10 pr-10 py-2 border border-black rounded-lg placeholder:text-black focus:outline-none focus:ring-2 focus:ring-gray-400"
-                                />
-                            </div>
-                        </div>
-                        {/* // ))} */}
-                    </div>
+  const navigate = useNavigate();
+  const evMessage = getItemWithExpiration("evMessage");
 
-                    {/* Send OTP Button */}
-                    <button className="mt-6 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800" onClick={(e) => navigate(`verify-email`)}>
-                        Send OTP
-                    </button>
-                </div>
+  const [sendEmail, { isLoading }] = useForgotPasswordMutation();
+
+  const onFinish = async (values) => {
+    try {
+      const res = await sendEmail(values).unwrap();
+      if (res?.success) {
+        toast.success(res?.message);
+        setItemWithExpiration("otpEmail", values?.uniqueId, 2);
+        navigate("verify-email");
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center ">
+      <div className="bg-white rounded-lg shadow-lg mt-8 w-[600px] h-[370px]">
+        <div className="flex flex-col  w-full  py-[40px] px-[24px]">
+          <div className="flex items-center gap-2 mb-[20px]">
+            <button onClick={() => navigate(-1)}>
+              <FaArrowLeft size={20} />
+            </button>
+            <h1 className="font-roboto text-[28px]">Forgot password</h1>
+          </div>
+          <h1 className="font-roboto text-[18px] text-[#545454]">
+            Change your password
+          </h1>
+          {/* Input Fields */}
+          {/* Input Fields */}
+          <Form
+            name="normal_login"
+            layout="vertical"
+            onFinish={onFinish}
+            requiredMark={false}
+            className="text-start"
+          >
+            {/* Enter email */}
+            <Form.Item
+              label={
+                <span className="font-roboto text-[18px] text-black/90">
+                  Enter Your E - Mail
+                </span>
+              }
+              className="mt-6"
+              name="uniqueId"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your email!",
+                },
+              ]}
+            >
+              <Input
+                size="large"
+                placeholder="Enter e - mail"
+                style={{
+                  width: "552px",
+                  height: "56px",
+                  borderRadius: "114px",
+                  border: "1px solid #DDDEE0",
+                  background: "transparent",
+                  paddingLeft: "12px",
+                }}
+              />
+            </Form.Item>
+
+            <div className="w-full flex justify-center mt-6">
+              <Button
+                type="primary"
+                size="large"
+                htmlType="submit"
+                className="px-2 w-full bg-[#90A4AE] text-[20px] font-roboto"
+                style={{ height: "56px", borderRadius: "50px" }}
+              >
+                {isLoading ? (
+                  <LoadingSpinner color="stroke-[#2e332f]" size={5} />
+                ) : (
+                  "Send OTP"
+                )}
+              </Button>
             </div>
+          </Form>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;
