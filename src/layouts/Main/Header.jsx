@@ -44,7 +44,7 @@ const Header = () => {
     <div className="w-full h-[78px] flex justify-between items-start rounded-sm  py-[16px]">
       <div className="text-start space-y-[4px] bg-[#DDE3E6] rounded-[16px] w-4/5 py-[16px] px-[32px]">
         <p className="text-sm md:text-[24px] font-roboto">
-          Welcome, {auth.name}
+          Welcome, {auth?.name}
         </p>
         <p className="text-sm md:text-[14px] font-roboto">
           {"Have a nice day!"}
@@ -80,14 +80,14 @@ const Header = () => {
           <div>
             <img
               src={
-                `${getAssetUrl(auth.image)}?t=${new Date().getTime()}` ||
+                `${getAssetUrl(auth?.image)}?t=${new Date().getTime()}` ||
                 profileImage
               }
               alt=""
               className="rounded-full h-[42px] w-[42px]"
             />
           </div>
-          <p className="ml-4">{auth.name}</p>
+          <p className="ml-4">{auth?.name}</p>
           {/* <Select
             defaultValue="Dr. Paul"
             style={{

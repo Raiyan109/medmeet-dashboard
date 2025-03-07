@@ -53,13 +53,19 @@ import SetPercentage from "../pages/Settings/SetPercentage";
 import ResetPassword from "../pages/Main/Setting/Change-password/ResetPassword";
 import { GiMedicines } from "react-icons/gi";
 import ManageMedicine from "../pages/Main/Medicine/ManageMedicine";
+import PrivateProtectedRoute from "../routes/PrivateProtectedRoute";
+import ProtectResetPassRoute from "../routes/ProtectResetPassRoute";
 
 export const dashboardItems = [
   {
     name: "Dashboard",
     path: "/",
     icon: RiDashboardHorizontalFill,
-    element: <DashboardHome />,
+    element: (
+      <PrivateProtectedRoute>
+        <DashboardHome />
+      </PrivateProtectedRoute>
+    ),
   },
 
   // {
@@ -83,7 +89,11 @@ export const dashboardItems = [
   // },
   {
     path: "notifications",
-    element: <Notifications />,
+    element: (
+      <PrivateProtectedRoute>
+        <Notifications />
+      </PrivateProtectedRoute>
+    ),
   },
   // {
   //   path: '/reviews',
@@ -94,60 +104,97 @@ export const dashboardItems = [
     name: "Earnings",
     path: "earnings",
     icon: TbCash,
-    element: <Earnings />,
+    element: (
+      <PrivateProtectedRoute>
+        <Earnings />
+      </PrivateProtectedRoute>
+    ),
   },
   {
     name: "Users",
     path: "users",
     icon: HiOutlineUsers,
-    element: <Guests />,
+    element: (
+      <PrivateProtectedRoute>
+        <Guests />
+      </PrivateProtectedRoute>
+    ),
   },
   {
     name: "Doctors",
     path: "doctor",
     icon: HiOutlineUsers,
-    element: <Doctor />,
+    element: (
+      <PrivateProtectedRoute>
+        <Doctor />
+      </PrivateProtectedRoute>
+    ),
   },
   {
     name: "Manage Request",
     path: "manage-request",
     icon: PiLaptopThin,
-    element: <DriverRequest />,
+    element: (
+      <PrivateProtectedRoute>
+        <DriverRequest />
+      </PrivateProtectedRoute>
+    ),
   },
   {
     name: "Appointments",
     path: "appointments",
     icon: HiOutlineCalendar,
-    element: <Appointments />,
+    element: (
+      <PrivateProtectedRoute>
+        <Appointments />
+      </PrivateProtectedRoute>
+    ),
   },
   {
     name: "Categories",
     path: "categories",
     icon: HiBars4,
-    element: <Categories />,
+    element: (
+      <PrivateProtectedRoute>
+        <Categories />
+      </PrivateProtectedRoute>
+    ),
   },
   {
     name: "Withdrawal Request",
     path: "withdrawal-request",
     icon: TbCoin,
-    element: <WithdrawRequest />,
+    element: (
+      <PrivateProtectedRoute>
+        <WithdrawRequest />
+      </PrivateProtectedRoute>
+    ),
   },
   {
     name: "Manage Medicine",
     path: "manage-medicine",
     icon: GiMedicines,
-    element: <ManageMedicine />,
+    element: (
+      <PrivateProtectedRoute>
+        <ManageMedicine />
+      </PrivateProtectedRoute>
+    ),
   },
   {
     name: "Setting",
     path: "settings",
     icon: IoSettingsOutline,
-    element: <Setting />,
+    element: (
+      <PrivateProtectedRoute>
+        <Setting />
+      </PrivateProtectedRoute>
+    ),
   },
-  {
-    path: "/hosts/:id",
-    element: <HostDetails />,
-  },
+
+  // {
+  //   path: "/hosts/:id",
+  //   element: <HostDetails />,
+  // },
   {
     name: "Settings",
     rootPath: "settings",
@@ -157,65 +204,117 @@ export const dashboardItems = [
         name: "Personal Information",
         path: "settings/profile",
         icon: CiUser,
-        element: <MyProfile />,
+        element: (
+          <PrivateProtectedRoute>
+            <MyProfile />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         path: "settings/profile/edit",
-        element: <EditMyProfile />,
+        element: (
+          <PrivateProtectedRoute>
+            <EditMyProfile />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         name: "Change Password",
         icon: FaServicestack,
         path: "settings/change-password",
-        element: <ChangePassword />,
+        element: (
+          <PrivateProtectedRoute>
+            <ChangePassword />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         path: "settings/change-password/forgot-password",
-        element: <ForgotPassword />,
+        element: (
+          <PrivateProtectedRoute>
+            <ForgotPassword />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         path: "settings/change-password/forgot-password/verify-email",
-        element: <VerifyEmail />,
+        element: (
+          <PrivateProtectedRoute>
+            <VerifyEmail />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         path: "settings/change-password/forgot-password/verify-email/reset-pass",
-        element: <ResetPassword />,
+        element: (
+          <ProtectResetPassRoute>
+            <ResetPassword />
+          </ProtectResetPassRoute>
+        ),
       },
       {
         name: "Set Percentage for transaction",
         icon: FaServicestack,
         path: "settings/set-percentage",
-        element: <SetPercentage />,
+        element: (
+          <PrivateProtectedRoute>
+            <SetPercentage />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         name: "Terms & Condition",
         icon: FaServicestack,
         path: "settings/terms-conditions",
-        element: <TermsConditions />,
+        element: (
+          <PrivateProtectedRoute>
+            <TermsConditions />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         path: "settings/terms-conditions/edit",
-        element: <EditTermsConditions />,
+        element: (
+          <PrivateProtectedRoute>
+            <EditTermsConditions />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         name: "Privacy Policy",
         icon: MdOutlineSecurityUpdateWarning,
         path: "settings/privacy-policy",
-        element: <PrivacyPolicy />,
+        element: (
+          <PrivateProtectedRoute>
+            <PrivacyPolicy />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         path: "settings/privacy-policy/edit",
-        element: <EditPrivacyPolicy />,
+        element: (
+          <PrivateProtectedRoute>
+            <EditPrivacyPolicy />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         name: "About Us",
         icon: BiMessageSquareDetail,
         path: "settings/about",
-        element: <AboutUs />,
+        element: (
+          <PrivateProtectedRoute>
+            <AboutUs />
+          </PrivateProtectedRoute>
+        ),
       },
       {
         path: "settings/about/edit",
-        element: <EditAboutUs />,
+        element: (
+          <PrivateProtectedRoute>
+            <EditAboutUs />
+          </PrivateProtectedRoute>
+        ),
       },
     ],
   },
