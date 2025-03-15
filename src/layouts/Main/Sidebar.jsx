@@ -52,7 +52,7 @@ const Sidebar = () => {
               alt=""
             />
           </div>
-          <ul className="mt-10 max-h-[650px] overflow-y-auto space-y-1 xl:space-y-[16px] px-[24px]">
+          <ul className="mt-10 max-h-[650px] overflow-y-auto scroll-smooth space-y-1 xl:space-y-[16px] px-[24px]">
             {routeLinkGenerators(dashboardItems).map(
               ({ name, icon, path, children, rootPath }, indx) =>
                 children?.length ? null : (

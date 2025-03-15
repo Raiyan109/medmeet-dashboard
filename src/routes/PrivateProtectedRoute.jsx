@@ -8,7 +8,11 @@ export default function PrivateProtectedRoute({ children }) {
 
   const user = useAuth();
 
-  if (isTokenAvailable && user?._id && user?.role === "SUPER_ADMIN") {
+  if (
+    isTokenAvailable &&
+    user?._id &&
+    ["SUPER_ADMIN", "ADMIN"].includes(user?.role)
+  ) {
     return children;
   } else {
     return <Navigate to={"/auth/sign-in"} />;
