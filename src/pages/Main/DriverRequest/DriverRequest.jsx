@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { getAssetUrl } from "../../../utils";
 import notFoundImage from "../../../assets/images/not-found.png";
 import toast from "react-hot-toast";
+import { RiDownloadLine } from "react-icons/ri";
 
 const DriverRequest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -204,6 +205,29 @@ const DriverRequest = () => {
     return <p className="text-red-500">Something went wrong!</p>;
   }
 
+  const downloadImage = async () => {
+    try {
+      const response = await fetch(getAssetUrl(modalImage), {
+        mode: "no-cors",
+      });
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = modalImage?.split("/").pop() || "downloaded_image.jpg"; // Ensure the file has a name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Clean up blob URL
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error("Error downloading image:", error);
+      toast("Failed to download image.");
+    }
+  };
+
   return (
     <div className="rounded-lg bg-[#DDE3E6] mt-8 recent-users-table py-[20px]">
       <div className="flex justify-between px-2">
@@ -294,20 +318,20 @@ const DriverRequest = () => {
                 <p
                   className="text-[#1E65FF] cursor-pointer"
                   onClick={() => {
-                    setModalImage(modalData.professionalIdFront);
+                    setModalImage(modalData?.professionalIdFront);
                     setShowImageModal(true);
                   }}
                 >
-                  {modalData.professionalIdFront?.split("/").pop()}
+                  {modalData?.professionalIdFront?.split("/").pop()}
                 </p>
                 <p
                   className="text-[#1E65FF] cursor-pointer"
                   onClick={() => {
-                    setModalImage(modalData.professionalIdBack);
+                    setModalImage(modalData?.professionalIdBack);
                     setShowImageModal(true);
                   }}
                 >
-                  {modalData.professionalIdBack?.split("/").pop()}
+                  {modalData?.professionalIdBack?.split("/").pop()}
                 </p>
               </div>
             ) : (
@@ -380,12 +404,19 @@ const DriverRequest = () => {
         // maxWidth="840px"
         // backgroundColor={'#E8EBF0'}
       >
-        <div className="flex p-24 bg-transparent justify-center">
+        <div className="flex flex-col items-center gap-6 p-16 bg-transparent justify-center">
           <img
             src={getAssetUrl(modalImage)}
             alt={modalImage?.split("/").pop || "N/A"}
             onError={(e) => (e.target.src = notFoundImage)}
           />
+          <button
+            className="w-[200px] h-[56px] bg-[#90A4AE] rounded-[8px] flex items-center justify-center gap-[8px]"
+            onClick={downloadImage}
+          >
+            <RiDownloadLine size={18} className="text-white" />
+            <h1 className="text-white font-roboto text-[20px]">Download</h1>
+          </button>
         </div>
       </DashboardModal>
     </div>
